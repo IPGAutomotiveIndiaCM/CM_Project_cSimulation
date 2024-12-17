@@ -1,6 +1,6 @@
 #!/bin/bash
-for file in /home/cloudSimulation/CSimulation/Startupfiles/*
+for file in /var/lib/jenkins/workspace/EXECUTABLE\ BUILD/CM_Project/Startupfiles/*
 do
-  /home/cloudSimulation/CSimulation/src/CarMaker.linux64 "$file" -v -screen -dstore
+  /var/lib/jenkins/workspace/EXECUTABLE\ BUILD/CM_Project/src/CarMaker.linux64 "$file" -v -screen -dstore
 done
 
