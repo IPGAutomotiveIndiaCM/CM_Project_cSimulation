@@ -11,7 +11,6 @@
 **
 ** Functions
 ** ---------
-**
 ** Initialization
 **
 **	User_Init_First ()
