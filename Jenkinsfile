@@ -1,25 +1,15 @@
 pipeline {
     agent any
-    node('label'){
-    // now you are on slave labeled with 'label'
-        def workspace = WORKSPACE
-            // ${workspace} will now contain an absolute path to job workspace on slave
-    
-            workspace = env.WORKSPACE
-            // ${workspace} will still contain an absolute path to job workspace on slave
-    
-            // When using a GString at least later Jenkins versions could only handle the env.WORKSPACE variant:
-            echo "Current workspace is ${env.WORKSPACE}"
-    
-            // the current Jenkins instances will support the short syntax, too:
-            echo "Current workspace is $WORKSPACE"
+    node('label') {
+        // Now you are on the slave labeled with 'label'
+        echo "Current workspace is ${env.WORKSPACE}"
 
     }
     
     stages {
         stage('Build Code') {
             steps {
-                 // Checkout code from the pre-configured SCM
+                // Checkout code from the pre-configured SCM
                 checkout scm
                 // Navigate to the src directory and run make commands
                 sh '''
@@ -31,9 +21,8 @@ pipeline {
         }
         stage('Scenarios Generation') {
             steps {
-                //open the os-shell 
+                // Open the OS shell to generate startup files and run the simulation
                 sh '''
-                    
                     cd Startupfiles
                     python3 Generate_Startup.py
                     cd ..
@@ -44,11 +33,12 @@ pipeline {
                 '''
             }
         }
-        stage('Simulation runing') {
+        stage('Simulation Running') {
             steps {
-                //open the os-shell 
+                // Placeholder for the simulation running commands
                 sh '''
-                    
+                    echo "Running the simulation now..."
+                    # Add your simulation commands here
                 '''
             }
         }
