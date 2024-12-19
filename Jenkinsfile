@@ -10,8 +10,10 @@ pipeline {
                     # Configure Git
                     git config user.email "dhrithi.dk@ipg-automotive.com"
                     git config user.name "IPGAutomotiveIndiaCM"
+                   
                     # Set the remote URL with credentials
                     git remote set-url origin https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/CM_Project.git
+                   
                     # Pull latest changes
                     git pull origin master
  
@@ -29,6 +31,7 @@ pipeline {
                 cd Startupfiles
                 python3 Generate_Startup.py
                 cd "$WORKSPACE"
+                git pull --rebase origin master
                 timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
                 git add .
                 git commit -m "SimOutput results update: $timestamp"
