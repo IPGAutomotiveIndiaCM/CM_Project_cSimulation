@@ -1,10 +1,4 @@
 pipeline {
-    agent any
-    node('label') {
-        // Now you are on the slave labeled with 'label'
-        echo "Current workspace is ${env.WORKSPACE}"
-
-    }
     
     stages {
         stage('Build Code') {
