@@ -17,6 +17,7 @@ pipeline {
             steps {
                 //open the os-shell 
                 sh '''
+                cd ..
                 cd Startupfiles
                 python3 Generate_Startup.py
                 cd ..
