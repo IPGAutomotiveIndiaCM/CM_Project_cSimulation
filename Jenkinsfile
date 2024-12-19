@@ -1,9 +1,16 @@
 pipeline {
     agent any
     stages {
-        stage('Hello World ') {
+        stage('Checkout Code') {
             steps {
-                echo 'Hello World testing csimulation!'
+                // Checkout code from the pre-configured SCM
+                checkout scm
+            }
+        }
+        stage('List Files') {
+            steps {
+                // Run ls command to check files
+                sh 'ls -la'
             }
         }
     }
