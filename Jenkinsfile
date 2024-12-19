@@ -17,7 +17,7 @@ pipeline {
                     script {
                         // Define the remote server details
                         def remote = [:]
- 
+                         remote.name = 'remote-server' 
                         remote.user = env.REMOTE_USER
                         remote.password = env.REMOTE_PASSWORD
                         remote.allowAnyHosts = true
