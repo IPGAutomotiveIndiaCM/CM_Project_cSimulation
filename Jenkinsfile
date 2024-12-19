@@ -15,7 +15,7 @@ pipeline {
                     make clean
                     make
                     cd Startupfiles
-                    python3 Generate_Startup.py
+                    python3 Startupfiles/Generate_Startup.py
                 '''
             }
         }
