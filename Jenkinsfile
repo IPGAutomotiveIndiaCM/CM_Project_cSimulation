@@ -7,10 +7,14 @@ pipeline {
                 checkout scm
             }
         }
-        stage('List Files') {
+        stage('Build Code') {
             steps {
-                // Run ls command to check files
-                sh 'ls -la'
+                // Navigate to the src directory and run make commands
+                sh '''
+                    cd src
+                    make clean
+                    make
+                '''
             }
         }
     }
