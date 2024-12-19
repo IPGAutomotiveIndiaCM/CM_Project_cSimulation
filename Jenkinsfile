@@ -8,6 +8,7 @@ pipeline {
                     checkout scm
                     sh '''
                     # Configure Git
+                    git clean -fd
                     git checkout master
                     git config user.email "dhrithi.dk@ipg-automotive.com"
                     git config user.name "IPGAutomotiveIndiaCM"
