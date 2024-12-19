@@ -8,7 +8,8 @@ pipeline {
                 // Navigate to the src directory and run make commands
                 sh '''
                     git checkout master
-                    git pull
+                    git config pull.rebase false                     
+                    git pull origin master
                     cd src
                     make clean
                     make
