@@ -26,13 +26,13 @@ pipeline {
         
             // the current Jenkins instances will support the short syntax, too:
             echo "Current workspace is $WORKSPACE"
-                    cd Startupfiles
-                    python3 Generate_Startup.py
-                    cd ..
-                    for file in Startupfiles/*
-                    do
-                          src/CarMaker.linux64 "$file" -v -screen -dstore
-                    done
+                    //cd Startupfiles
+                    //python3 Generate_Startup.py
+                   // cd ..
+                   // for file in Startupfiles/*
+                   // do
+                          //src/CarMaker.linux64 "$file" -v -screen -dstore
+                  //  done
                 '''
             }
         }
