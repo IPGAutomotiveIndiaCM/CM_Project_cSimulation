@@ -23,6 +23,11 @@ pipeline {
                 do
                     src/CarMaker.linux64 "$file" -v -screen -dstore
                 done
+                timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
+                cd "$WORKSPACE/cSimulation/CM_Project/SimOutput"
+                git add .
+                git commit -m "SimOutput results update: $timestamp"
+                git push
                 '''
             }
         }
@@ -37,3 +42,4 @@ pipeline {
         }
     }
 }
+ 
