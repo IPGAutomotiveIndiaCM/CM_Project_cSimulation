@@ -28,10 +28,7 @@ pipeline {
                 git config user.name "IPGAutomotiveIndiaCM"
                 git add .
                 git commit -m "SimOutput results update: $timestamp"
-                pwd
-                ls -la
-                git branch -r
-                //git push -u origin main
+                git push -u origin/master
                 '''
             }
         }
