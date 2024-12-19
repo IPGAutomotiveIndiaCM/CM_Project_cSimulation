@@ -1,4 +1,5 @@
 pipeline {
+    agent any
     node('label'){
     // now you are on slave labeled with 'label'
         def workspace = WORKSPACE
@@ -13,8 +14,7 @@ pipeline {
             // the current Jenkins instances will support the short syntax, too:
             echo "Current workspace is $WORKSPACE"
 
-}
-    agent any
+    }
     
     stages {
         stage('Build Code') {
