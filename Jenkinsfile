@@ -7,14 +7,28 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Build Code') {
+        stage('Execute Commands on Remote Server') {
             steps {
-                // Navigate to the src directory and run make commands
-                sh '''
-                    cd src
-                    make clean
-                    make
-                '''
+                withCredentials([usernamePassword(
+                    credentialsId: 'cSimulation-ssh-credentials', 
+                    usernameVariable: 'REMOTE_USER', 
+                    passwordVariable: 'REMOTE_PASSWORD'
+                )]) {
+                    script {
+                        // Define the remote server details
+                        def remote = [:]
+ 
+                        remote.user = env.REMOTE_USER
+                        remote.password = env.REMOTE_PASSWORD
+                        remote.allowAnyHosts = true
+ 
+                        // Execute commands on the remote server
+                        sshCommand remote: remote, command: '''
+                            pwd
+                            ls -la
+                        '''
+                    }
+                }
             }
         }
     }
