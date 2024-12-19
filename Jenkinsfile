@@ -17,15 +17,15 @@ pipeline {
             steps {
                 //open the os-shell 
                 sh '''
-                cd ..
-                cd Startupfiles
-                python3 Generate_Startup.py
-                cd ..
-                //creating the testrun variations
-                for file in Startupfiles/*
-                do
-                      src/CarMaker.linux64 "$file" -v -screen -dstore
-                done
+                    
+                    cd Startupfiles
+                    python3 Generate_Startup.py
+                    cd ..
+                    //creating the testrun variations
+                    for file in Startupfiles/*
+                    do
+                          src/CarMaker.linux64 "$file" -v -screen -dstore
+                    done
                 '''
             }
         }
