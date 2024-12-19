@@ -20,7 +20,7 @@ pipeline {
                     
                     cd Startupfiles
                     python3 Generate_Startup.py
-                    cd ..
+                    
                     //creating the testrun variations
                     for file in Startupfiles/*
                     do
