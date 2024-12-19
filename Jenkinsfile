@@ -20,9 +20,8 @@ pipeline {
                     
                     cd Startupfiles
                     python3 Generate_Startup.py
-                    for file in Startupfiles/*
                     cd ..
-                
+                    for file in Startupfiles/*
                     do
                           src/CarMaker.linux64 "$file" -v -screen -dstore
                     done
