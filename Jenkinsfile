@@ -7,6 +7,7 @@ pipeline {
                 checkout scm
                 // Navigate to the src directory and run make commands
                 sh '''
+                    git checkout master
                     cd src
                     make clean
                     make
@@ -19,16 +20,16 @@ pipeline {
                 cd Startupfiles
                 python3 Generate_Startup.py
                 cd "$WORKSPACE"
-                for file in Startupfiles/*
-                do
-                    src/CarMaker.linux64 "$file" -v -screen -dstore
-                done
+                //for file in Startupfiles/*
+                //do
+                    //src/CarMaker.linux64 "$file" -v -screen -dstore
+               // done
                 timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
                 git config user.email "dhrithi.dk@ipg-automotive.com"
                 git config user.name "IPGAutomotiveIndiaCM"
                 git add .
                 git commit -m "SimOutput results update: $timestamp"
-                git branch
+                git push -u origin master
                 '''
             }
         }
@@ -43,3 +44,5 @@ pipeline {
         }
     }
 }
+ 
+ 
