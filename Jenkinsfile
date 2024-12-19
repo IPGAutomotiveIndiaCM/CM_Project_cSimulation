@@ -8,7 +8,10 @@ pipeline {
                 // Navigate to the src directory and run make commands
                 sh '''
                     git checkout master
-                    git config pull.rebase false                     
+                    git config user.email "dhrithi.dk@ipg-automotive.com"
+                    git config user.name "IPGAutomotiveIndiaCM"
+                    git remote set-url origin https://IPGAutomotiveIndiaCM:IPG@India25@github.com/IPGAutomotiveIndiaCM/CM_Project.git
+                                         
                     git pull origin master
                     cd src
                     make clean
