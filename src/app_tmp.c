@@ -19,6 +19,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#if defined(_DSRT) || defined(_DSRTLX) || defined(_DSRT64)
+#  include <DsApplicationInterface.h>
+#endif
 
 #include <infoc.h>
 #include <CarMaker.h>
@@ -28,11 +31,11 @@
 extern const char *SetConnectedIO (const char *io);
 
 static const char *CompileLibs[] = {
-    /* ../../../fake/linux64/lib/../../../src_lib/Portings/linux64/lib/libcar.a */
-    /* ../../../fake/linux64/lib/../../../src_lib/Portings/linux64/lib/libcarmaker.a */
-    /* ../../../fake/linux64/lib/../../../lib/driver/linux64/lib/libipgdriver.a */
-    /* ../../../fake/linux64/lib/../../../lib/road/linux64/lib/libipgroad.a */
-    /* ../../../fake/linux64/lib/../../../lib/tire/linux64/lib/libipgtire.a */
+    /* /opt/ipg/carmaker/linux64-13.1.1/lib/libcar.a */
+    /* /opt/ipg/carmaker/linux64-13.1.1/lib/libcarmaker.a */
+    /* /opt/ipg/carmaker/linux64-13.1.1/lib/libipgdriver.a */
+    /* /opt/ipg/carmaker/linux64-13.1.1/lib/libipgroad.a */
+    /* /opt/ipg/carmaker/linux64-13.1.1/lib/libipgtire.a */
     "libcar.a	CarMaker-Car linux64 13.1.1 2024-07-15",
     "libcarmaker.a	CarMaker linux64 13.1.1 2024-07-15",
     "libipgdriver.a	IPGDriver linux64 13.1.1 2024-07-12",
@@ -45,23 +48,18 @@ static const char *CompileLibs[] = {
 static const char *CompileFlags[] = {
     "-m64 -fPIC -O3 -DNDEBUG -DLINUX -DLINUX64 -D_GNU_SOURCE",
     "-D_FILE_OFFSET_BITS=64 -DCM_NUMVER=130101",
-    "-DMYMODELS -Wall -Wimplicit -Wmissing-prototypes",
-    "-Wno-format-overflow -Wno-format-truncation",
-    "-Wno-stringop-overflow -Wno-stringop-truncation",
-    "-Wno-array-bounds -Wno-array-parameter",
-    "-Wno-attributes -Wno-packed-not-aligned",
-    "-Wno-address-of-packed-member -fno-stack-protector",
-    "-Wlogical-op",
+    "-I/opt/ipg/carmaker/linux64-13.1.1/include -Wall",
+    "-Wimplicit -Wmissing-prototypes",
     NULL
 };
 
 
 tAppStartInfo   AppStartInfo = {
-    "CarMaker 13.1.1 - Car_Generic",          /* App_Version         */
-    "3",          /* App_BuildVersion    */
-    "jetbrains",     /* App_CompileUser     */
-    "5c973b203201",         /* App_CompileSystem   */
-    "2024-07-15 15:25:57",  /* App_CompileTime */
+    "Car_Generic <insert.your.version.no>",          /* App_Version         */
+    "2",          /* App_BuildVersion    */
+    "jenkins",     /* App_CompileUser     */
+    "dhrithiipg",         /* App_CompileSystem   */
+    "2024-12-19 19:37:52",  /* App_CompileTime */
 
     CompileFlags,                /* App_CompileFlags  */
     CompileLibs,                 /* App_Libs          */
@@ -192,4 +190,11 @@ App_ExportConfig (void)
 }
 
 
+#if defined(_DS1006)
+void
+IPGRT_Board_Init (void)
+{
+    init();
+}
+#endif
 
