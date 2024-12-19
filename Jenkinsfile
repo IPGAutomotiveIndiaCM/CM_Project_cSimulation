@@ -21,8 +21,6 @@ pipeline {
                 python3 Generate_Startup.py
                 cd "$WORKSPACE"
                 timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
-                git config user.email "dhrithi.dk@ipg-automotive.com"
-                git config user.name "IPGAutomotiveIndiaCM"
                 git add .
                 git commit -m "SimOutput results update: $timestamp"
                 git push -u origin master
