@@ -19,8 +19,8 @@ pipeline {
                         def remote = [:]
                          remote.name = 'remote-server' 
                         remote.host = '192.168.0.105'
-                        remote.user = 'dhrithiipg'
-                        remote.password = '2508'
+                        remote.user = 'csimulation'
+                        remote.password = '9480609934'
                         remote.allowAnyHosts = true
  
                         // Execute commands on the remote server
