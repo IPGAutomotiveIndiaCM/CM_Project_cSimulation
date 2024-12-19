@@ -10,7 +10,7 @@ pipeline {
                     git checkout master
                     git config user.email "dhrithi.dk@ipg-automotive.com"
                     git config user.name "IPGAutomotiveIndiaCM"
-                    git remote set-url origin https://IPGAutomotiveIndiaCM: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@github.com/IPGAutomotiveIndiaCM/CM_Project.git
+                    git remote set-url origin https://IPGAutomotiveIndiaCM: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@github.com/IPGAutomotiveIndiaCM/CM_Project.git
                                          
                     git pull origin master
                     cd src
