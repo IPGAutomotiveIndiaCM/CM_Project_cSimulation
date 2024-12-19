@@ -28,7 +28,7 @@ pipeline {
                 timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
                 git add .
                 git commit -m "SimOutput results update: $timestamp"
-                git push https://IPGAutomotiveIndiaCM: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@github.com/IPGAutomotiveIndiaCM/CM_Project.git
+                git push -u origin master
                 '''
             }
         }
