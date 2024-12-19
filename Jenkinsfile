@@ -10,7 +10,7 @@ pipeline {
                     git checkout master
                     git config user.email "dhrithi.dk@ipg-automotive.com"
                     git config user.name "IPGAutomotiveIndiaCM"
-                    git remote set-url origin https://IPGAutomotiveIndiaCM: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@github.com/IPGAutomotiveIndiaCM/CM_Project.git
+                    git remote set-url origin https://IPGAutomotiveIndiaCM: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@github.com/IPGAutomotiveIndiaCM/CM_Project.git
                                          
                     git pull origin master
                     cd src
@@ -28,7 +28,7 @@ pipeline {
                 timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
                 git add .
                 git commit -m "SimOutput results update: $timestamp"
-                git push https://IPGAutomotiveIndiaCM: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@github.com/IPGAutomotiveIndiaCM/CM_Project.git
+                git push https://IPGAutomotiveIndiaCM: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@github.com/IPGAutomotiveIndiaCM/CM_Project.git
                 '''
             }
         }
