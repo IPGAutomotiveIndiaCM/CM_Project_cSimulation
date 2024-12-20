@@ -1,6 +1,6 @@
 #INFOFILE1.1 (UTF-8) - Do not remove this line!
 FileIdent = CarMaker-TestRunFinished 1
-FileCreator = CarMaker 2024-12-20 09:51:19
+FileCreator = CarMaker 2024-12-20 09:52:49
 
 Time = 32.7630000000143
 Dist = 630.0602098066
@@ -1806,7 +1806,7 @@ DDict.TCPU.Vehicle = 5.00679016113281e-06
 DDict.TCPU.VehicleControl = 0
 DDict.Time = 32.7630000000143
 DDict.Time.Global = 33.6180000000124
-DDict.Time.WC = 0.84497594833374
+DDict.Time.WC = 0.851531028747559
 DDict.UserOut_00 = 0
 DDict.UserOut_01 = 0
 DDict.UserOut_02 = 0
