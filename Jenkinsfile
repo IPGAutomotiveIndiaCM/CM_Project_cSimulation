@@ -37,10 +37,6 @@ pipeline {
                 do
                     src/CarMaker.linux64 "$file" -v -screen -dstore
                 done
-                timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
-                git add .
-                git commit -m "SimOutput results update: $timestamp"
-                git push -u origin master
                 '''
             }
         }
