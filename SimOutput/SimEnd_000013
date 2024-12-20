@@ -1,6 +1,6 @@
 #INFOFILE1.1 (UTF-8) - Do not remove this line!
 FileIdent = CarMaker-TestRunFinished 1
-FileCreator = CarMaker 2024-12-20 09:37:44
+FileCreator = CarMaker 2024-12-20 09:39:14
 
 Time = 32.7630000000143
 Dist = 630.0602098066
@@ -1791,22 +1791,22 @@ DDict.Steer.WhlTrqStatic = 0
 DDict.Steer.WhlVel = 0
 DDict.TCPU.AposEvalSend = 0
 DDict.TCPU.AposPoll = 0
-DDict.TCPU.Brake = 9.5367431640625e-07
+DDict.TCPU.Brake = 0
 DDict.TCPU.Cycle = 0.001
 DDict.TCPU.DrivMan = 9.5367431640625e-07
 DDict.TCPU.In = 0
 DDict.TCPU.Out = 0
-DDict.TCPU.PowerTrain = 9.5367431640625e-07
-DDict.TCPU.Sensors = 1.19209289550781e-06
+DDict.TCPU.PowerTrain = 2.14576721191406e-06
+DDict.TCPU.Sensors = 0
 DDict.TCPU.Total = 9.05990600585938e-06
-DDict.TCPU.Traffic = 0
+DDict.TCPU.Traffic = 9.5367431640625e-07
 DDict.TCPU.Trailer = 0
 DDict.TCPU.User = 0
-DDict.TCPU.Vehicle = 4.05311584472656e-06
-DDict.TCPU.VehicleControl = 9.5367431640625e-07
+DDict.TCPU.Vehicle = 5.00679016113281e-06
+DDict.TCPU.VehicleControl = 0
 DDict.Time = 32.7630000000143
 DDict.Time.Global = 33.6180000000124
-DDict.Time.WC = 0.841300964355469
+DDict.Time.WC = 0.853047847747803
 DDict.UserOut_00 = 0
 DDict.UserOut_01 = 0
 DDict.UserOut_02 = 0
