@@ -47,3 +47,10 @@ SYSTEM_START	-	dhrithiipg	dhrithiipg	2024-12-20 09:27:31
 
 SYSTEM_INFO	Car_Generic <insert.your.version.no> #47	jenkins@dhrithiipg 2024-12-20 09:27:29	(13.1.1 jetbrains@5c973b203201 2024-07-15 15:20:25)
 SIM	1734667051	dhrithiipg	unknown	Startupfiles/Generate_Startup.py	1	0	0
+
+
+SYSTEM_START	-	dhrithiipg	dhrithiipg	2024-12-20 09:29:00
+
+
+SYSTEM_INFO	Car_Generic <insert.your.version.no> #48	jenkins@dhrithiipg 2024-12-20 09:28:58	(13.1.1 jetbrains@5c973b203201 2024-07-15 15:20:25)
+SIM	1734667140	dhrithiipg	unknown	Startupfiles/Generate_Startup.py	1	0	0
