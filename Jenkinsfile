@@ -22,6 +22,8 @@ pipeline {
                     # Build code
                     cd src
                     make clean
+                    ls -la
+                    pwd
                     make
                     '''
                 }
