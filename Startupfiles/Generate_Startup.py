@@ -20,8 +20,8 @@ def listToString(s):
     return (str1.join(s))
 
 
-a_list = list(range(60, 80, 10))   # range of values to be changed each time
-b_list = list(range(2, 4, 1))
+a_list = list(range(60, 135, 5))   # range of values to be changed each time
+b_list = list(range(2, 5, 1))
 for x in a_list:  # for every value in the range
     for y in b_list:
         with open(filem, 'r', encoding='utf-8') as file:
@@ -32,5 +32,3 @@ for x in a_list:  # for every value in the range
         
         with open(filem + 'S_'+str(x) +'_O_'+ str(y), 'w', encoding='utf-8') as file:
             file.writelines(data)
-            
-
