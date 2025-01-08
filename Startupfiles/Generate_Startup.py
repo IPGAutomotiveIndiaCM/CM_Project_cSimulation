@@ -1,7 +1,7 @@
 filem= "Startup_Example_Template"                     # Original file
 lookup = 'nv.Speed = '
 lookup_1 = 'nv.Lateral_Offset = '         
-lookup_5 = 'kv.SimParameters\:DStore.OutPath = SimOutput/Overtake_'  
+lookup_5 = 'kv.SimParameters\:DStore.OutPath = SimOutput/LaneChangeISO_'  
 
 file1 = open(filem)
 all_lines = file1.readlines()
