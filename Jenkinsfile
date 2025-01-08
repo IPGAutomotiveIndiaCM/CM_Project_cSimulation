@@ -47,7 +47,7 @@ pipeline {
                 // Placeholder for the simulation running commands
                 sh '''
                     echo "Running the simulation now... in "
-                    # Addd your simulation commands here
+                    # Add your simulation commands here
                 '''
             }
         }
