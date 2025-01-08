@@ -32,7 +32,7 @@ except Exception as e:
     # General exception handling
     print(f"An unexpected error occurred: {e}")
     sys.exit(1)
-
+"""
 filem= "Startup_Example_Template"                     # Original file
 lookup = 'nv.Speed = '
 lookup_1 = 'nv.Lateral_Offset = '         
@@ -67,3 +67,5 @@ for x in a_list:  # for every value in the range
         
         with open(filem + 'S_'+str(x) +'_O_'+ str(y), 'w', encoding='utf-8') as file:
             file.writelines(data)
+            """
+
