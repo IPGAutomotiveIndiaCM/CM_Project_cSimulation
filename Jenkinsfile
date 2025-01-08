@@ -14,7 +14,7 @@ pipeline {
                     git config user.name "IPGAutomotiveIndiaCM"
                    
                     # Set the remote URL with credentials
-                    git remote set-url origin https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/CM_Project.git
+                    git remote set-url origin https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/CM_Project_cSimulation.git
                    
                     # Pull latest changes
                     git pull origin master
