@@ -29,8 +29,7 @@ set_permissions(log_dir)
 
 # Construct the osc2cm command
 command = [
-    'sudo', osc2cm_path,  # Add sudo to run with elevated privileges
-    '2508'
+    'sudo',-s, osc2cm_path,  # Add sudo to run with elevated privileges
     '--cmprojpath', cmprojpath,
     '--oscfname', oscfname,
     '--validate',
