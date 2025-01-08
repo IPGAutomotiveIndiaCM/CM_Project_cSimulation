@@ -10,7 +10,7 @@ log_dir = "/var/lib/jenkins/workspace/cSimulation/SimOutput/OSC2CM_Log/"
 # Check if the directory exists, if not, create it with sudo
 def create_directory_if_not_exists(directory):
     try:
-        subprocess.run(['sudo', 'mkdir', '-p', directory], check=True)
+        subprocess.run(['mkdir', '-p', directory], check=True)
         print(f"Directory {directory} created successfully!")
     except subprocess.CalledProcessError as e:
         print(f"Error creating directory {directory}: {e}")
@@ -18,7 +18,7 @@ def create_directory_if_not_exists(directory):
 # Set permissions for the directory
 def set_permissions(directory):
     try:
-        subprocess.run(['sudo', 'chmod', '-R', '755', directory], check=True)
+        subprocess.run(['chmod', '-R', '755', directory], check=True)
         print(f"Permissions set for {directory}")
     except subprocess.CalledProcessError as e:
         print(f"Error setting permissions for {directory}: {e}")
@@ -29,7 +29,7 @@ set_permissions(log_dir)
 
 # Construct the osc2cm command
 command = [
-    'sudo',-s, osc2cm_path,  # Add sudo to run with elevated privileges
+     osc2cm_path,  # Add sudo to run with elevated privileges
     '--cmprojpath', cmprojpath,
     '--oscfname', oscfname,
     '--validate',
