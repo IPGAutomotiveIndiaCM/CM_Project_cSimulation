@@ -1,7 +1,7 @@
 #INFOFILE1.1 - Do not remove this line!
 FileIdent = CarMaker-Startup 1.0
 FileCreator = CarMaker 13.1.1
-TestRun = Examples/VehicleDynamics/Handling/LaneChange_ISO
+TestRun = /var/lib/jenkins/workspace/cSimulation/Data/TestRun/Overtaker
 TmpFName =
 User = dhrithi
 Variation = Variation 0
@@ -21,4 +21,4 @@ nv.Width_3rdSect = 2.6004
 nv.Lateral_Offset = 2
 nv.Speed = 100
 kv.TestRun\:Vehicle = Examples/Demo_Peugeot_207CC
-kv.SimParameters\:DStore.OutPath = SimOutput/LaneChangeISO_speed_60LatOff_2
+kv.SimParameters\:DStore.OutPath = SimOutput/Overtaker_speed_60LatOff_2
