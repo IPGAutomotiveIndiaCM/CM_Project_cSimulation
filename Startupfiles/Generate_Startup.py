@@ -1,7 +1,42 @@
+import subprocess
+import sys
+
+# Define the command and parameters to run
+command = [
+    '/opt/ipg/carmaker/linux64-13.1.1/bin/osc2cm',  # Path to the osc2cm executable
+    '--cmprojpath', '/var/lib/jenkins/workspace/cSimulation',  # Path to the CM project
+    '--oscfname', '/var/lib/jenkins/workspace/cSimulation/Data/OpenSCENARIO/Overtaker.xosc',  # OpenSCENARIO file
+    '--validate',  # Validate flag
+    '--egoname', 'Ego',  # Ego name
+    '--trfname', 'Overtaker',  # Trajectory file name
+    '--rdfname', 'Overtaker_road',  # Road file name
+    '--egoinf', 'demoo',  # Ego vehicle info
+    '--egoinf', ' DemoCar',
+    '--trfendmode', '2',  # Trajectory end mode
+    '--loglevel', '4',  # Log level
+    '--logtofile',  # Log to file
+    '--logtoconsole',  # Log to console
+    '--trfmobj',  # Traffic object flag
+    "--trajlegacy",
+    "--defaultman","999s"
+]
+
+try:
+    # Run the command
+    result = subprocess.run(command, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+
+    # Print the output to console
+    print("Command executed successfully:")
+    print(result.stdout)
+except Exception as e:
+    # General exception handling
+    print(f"An unexpected error occurred: {e}")
+    sys.exit(1)
+
 filem= "Startup_Example_Template"                     # Original file
 lookup = 'nv.Speed = '
 lookup_1 = 'nv.Lateral_Offset = '         
-lookup_5 = 'kv.SimParameters\:DStore.OutPath = SimOutput/LaneChangeISO_'  
+lookup_5 = 'kv.SimParameters\:DStore.OutPath = SimOutput/Overtake_'  
 
 file1 = open(filem)
 all_lines = file1.readlines()
