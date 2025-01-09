@@ -46,7 +46,7 @@ pipeline {
             steps {
                 // Placeholder for the simulation running commands
                 sh '''
-                    echo "Running the simulation now... in "
+                    echo "Running ffffthe simulation now... in "
                     # Adcd your simulation commands here
                 '''
             }
