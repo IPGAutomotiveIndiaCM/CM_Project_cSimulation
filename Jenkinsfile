@@ -40,8 +40,7 @@ pipeline {
                 cd "$WORKSPACE"
                 for file in Startupfiles/*;
                 do
-                    
-                        /src/CarMaker.linux64 "$file" -v -screen -dstore
+                    src/CarMaker.linux64 "$file" -v -screen -dstore
                 
                 done
                 '''
