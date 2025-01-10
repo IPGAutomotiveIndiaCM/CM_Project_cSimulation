@@ -42,7 +42,7 @@ pipeline {
                 do
                     if [[ -f "$file" ]]; then
                     
-                        src/CarMaker.linux64 "$file" -v -screen -dstore
+                        /src/CarMaker.linux64 "$file" -v -screen -dstore
                     fi
                 done
                 '''
