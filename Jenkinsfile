@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+      IPGHOME = "/opt/ipg/"
+    }
     stages {
         stage('Build Code') {
             steps {
