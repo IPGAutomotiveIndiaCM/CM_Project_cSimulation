@@ -38,12 +38,11 @@ pipeline {
                 cd Startupfiles
                 python3 Generate_Startup.py
                 cd "$WORKSPACE"
-                for file in Startupfiles/Startup_Example_*;
+                for file in Startupfiles/*;
                 do
-                    if [[ -f "$file" ]]; then
                     
                         /src/CarMaker.linux64 "$file" -v -screen -dstore
-                    fi
+                
                 done
                 '''
             }
