@@ -1,4 +1,4 @@
-import subprocess
+'''import subprocess
 import os
  
 # Define paths
@@ -57,7 +57,7 @@ def run_command(command):
  
 # Run the osc2cm command
 run_command(command)
-
+'''
 
 
 
