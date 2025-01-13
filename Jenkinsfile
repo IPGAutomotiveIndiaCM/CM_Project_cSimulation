@@ -47,7 +47,7 @@ pipeline {
                 done
                 
                 /opt/ipg/carmaker/linux64-13.1.1/bin/resutil -a -om ascii -o //var/lib/jenkins/workspace/cSimulation/SimOutput/LaneChangeISO_speed_70LatOff_2 /var/lib/jenkins/workspace/cSimulation/SimOutput/LaneChangeISO_speed_70LatOff_2.erg
-                """
+                '''
                 
             }
         }
