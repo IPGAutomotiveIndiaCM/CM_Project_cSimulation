@@ -26,16 +26,20 @@ for file_name in erg_files:
     distance = df_result["Car.Distance_m"].to_numpy()
     i = 0
     I = 0
-    hit_status = "not hit"
-    t1 = 0
+    hit_status = "Test_Case_Passed"
+    t1=0
+    for j in range(len(time)):
+        pass
+    print(time[j])
+    t1=time[j]
     for j in range(len(time)):
         if sensor[j] == 1:
             print(time[j])
-            t1 = time[j]
+            t1=time[j]
             # print("hit")
-            hit_status = "Hit"
-
+            hit_status = "Test_Case_Failed"
             break
+
 
     results.append({
         'File Name': file_name,
@@ -94,21 +98,17 @@ html_content = f"""
         <table>
             <thead>
                 <tr>
-                    <th>Serial No.</th>
-                    <th>TestRun Name</th>
-                    <th>Hit Status</th>
-                    <th>Time (s) at Hit</th>
+                    <th>TestRun_Name</th>
+                    <th>Test_Case</th>
+                    <th>Time (s)</th>
                 </tr>
             </thead>
             <tbody>
 """
-
-# Add serial numbers and fill the table
-for idx, row in df_results.iterrows():
-    hit_class = 'hit' if row['Hit Status'] == 'Hit' else 'not-hit'
+for _, row in df_results.iterrows():
+    hit_class = 'Test_Case_Passed' if row['Hit Status'] == 'Test_Case_Passed' else 'Test_Case_Failed'
     html_content += f"""
                 <tr>
-                    <td>{idx + 1}</td>  <!-- Serial number -->
                     <td>{row['File Name']}</td>
                     <td class="{hit_class}">{row['Hit Status']}</td>
                     <td>{row['Time']}</td>
@@ -121,9 +121,7 @@ html_content += """
 </body>
 </html>
 """
-
-# Write the HTML content to a file
 with open("simulation_report.html", "w") as file:
     file.write(html_content)
 
-print("HTML file created successfully with detailed simulation results and serial numbers!")
+print("HTML file created successfully with detailed simulation results!")
