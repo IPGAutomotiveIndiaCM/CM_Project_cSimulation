@@ -37,16 +37,7 @@ pipeline {
                 sh '''
                 cd Startupfiles
                 python3 Generate_Startup.py
-                cd "$WORKSPACE"
-                for file in Startupfiles/Startup_Example_*;
-                do
-                    
-                        src/CarMaker.linux64 "$file" -v -screen -dstore
                 
-                
-                done
-                
-                /opt/ipg/carmaker/linux64-13.1.1/bin/resutil -a -om ascii -o //var/lib/jenkins/workspace/cSimulation/SimOutput/LaneChangeISO_speed_70LatOff_2 /var/lib/jenkins/workspace/cSimulation/SimOutput/LaneChangeISO_speed_70LatOff_2.erg
                 '''
                 
             }
@@ -54,6 +45,22 @@ pipeline {
         stage('Simulation Running') {
             steps {
                 // Placeholder for the simulation running commands
+                sh '''
+                    echo "Running ffffthe simulation now... in "
+                    # Add your simulation commands here
+                    cd "$WORKSPACE"
+                    for file in Startupfiles/Startup_Example_*;
+                    do
+                    
+                        src/CarMaker.linux64 "$file" -v -screen -dstore 
+                    done
+                '''
+            }
+        }
+        stage('Report Evaluation') {
+            steps {
+                // Placeholder for the simulation running commands
+                //call that python3 script
                 sh '''
                     echo "Running ffffthe simulation now... in "
                     # Add your simulation commands here
