@@ -1,142 +1,129 @@
-import subprocess
-
 import os
+import cmerg
+import pandas as pd
 
-# Define paths
+folder_path = 'C:/CM_Projects/loaderg/SimOutput/IPGNB10343/20250115'
+erg_files = [f for f in os.listdir(folder_path) if f.lower().endswith('.erg')]
+results = []
 
-osc2cm_path = "/opt/ipg/carmaker/linux64-13.1.1/bin/osc2cm"
+# Loop through each .erg file and process the data
+for file_name in erg_files:
+    # Construct the file paths
+    old_file_path = os.path.join(folder_path, file_name)
+    new_file_path = os.path.join(folder_path, file_name)  # Assuming the file is not renamed
 
-cmprojpath = "/var/lib/jenkins/workspace/cSimulation"
+    # Rename the file (same name for now, modify if needed)
+    os.rename(old_file_path, new_file_path)
+    print(f'Renamed: {file_name} -> {file_name}')
 
-oscfname = "/var/lib/jenkins/workspace/cSimulation/Data/OpenSCENARIO/Overtaker.xosc"
+    # Convert .erg file to a pandas DataFrame
+    df_result = cmerg.ERG(new_file_path).to_pd()
 
-log_dir = "/var/lib/jenkins/workspace/cSimulation/SimOutput/OSC2CM_Log/"
+    # Extract data from the DataFrame
+    time = df_result["Time_s"].to_numpy()
+    velocity = df_result["Car.v_m/s"].to_numpy()
+    sensor = df_result["Sensor.Collision.Vhcl.Fr1.Count_"].to_numpy()
+    distance = df_result["Car.Distance_m"].to_numpy()
+    i = 0
+    I = 0
+    hit_status = "not hit"
+    t1 = 0
+    for j in range(len(time)):
+        if sensor[j] == 1:
+            print(time[j])
+            t1 = time[j]
+            # print("hit")
+            hit_status = "Hit"
 
-# Check if the directory exists, if not, create it with sudo
+            break
 
-def create_directory_if_not_exists(directory):
+    results.append({
+        'File Name': file_name,
+        'Hit Status': hit_status,
+        'Time': t1,  # Using 67th time value or N/A
+    })
 
-    try:
+    print(f"File: {file_name}, Hit Status: {hit_status}")
+    print("*********")
 
-        subprocess.run(['mkdir', '-p', directory], check=True)
+# Convert the results into a pandas DataFrame
+df_results = pd.DataFrame(results)
 
-        print(f"Directory {directory} created successfully!")
+# Output the results to an HTML file (in tabular form)
+output_html = 'output_hitsdis.html'
+df_results.to_html(output_html, index=False)
 
-    except subprocess.CalledProcessError as e:
+print(f"HTML file created successfully at: {output_html}")
 
-        print(f"Error creating directory {directory}: {e}")
+# Define the HTML content (including the results)
+html_content = f"""
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulation Report</title>
+    <style>
+        body {{
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }}
+        .container {{
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }}
+        table {{
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }}
+        table, th, td {{
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>IPG CarMaker Simulation Report</h1>
+        <p>This report summarizes the results of the collision detection during the simulation.</p>
 
-# Set permissions for the directory
+        <table>
+            <thead>
+                <tr>
+                    <th>Serial No.</th>
+                    <th>TestRun Name</th>
+                    <th>Hit Status</th>
+                    <th>Time (s) at Hit</th>
+                </tr>
+            </thead>
+            <tbody>
+"""
 
-def set_permissions(directory):
+# Add serial numbers and fill the table
+for idx, row in df_results.iterrows():
+    hit_class = 'hit' if row['Hit Status'] == 'Hit' else 'not-hit'
+    html_content += f"""
+                <tr>
+                    <td>{idx + 1}</td>  <!-- Serial number -->
+                    <td>{row['File Name']}</td>
+                    <td class="{hit_class}">{row['Hit Status']}</td>
+                    <td>{row['Time']}</td>
+                </tr>
+"""
+html_content += """
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+"""
 
-    try:
+# Write the HTML content to a file
+with open("simulation_report.html", "w") as file:
+    file.write(html_content)
 
-        subprocess.run(['chmod', '-R', '755', directory], check=True)
-
-        print(f"Permissions set for {directory}")
-
-    except subprocess.CalledProcessError as e:
-
-        print(f"Error setting permissions for {directory}: {e}")
-
-# Ensure directory exists and set permissions
-
-create_directory_if_not_exists(log_dir)
-
-set_permissions(log_dir)
-
-# Construct the osc2cm command
-
-command = [
-
-     osc2cm_path,  # Add sudo to run with elevated privileges
-
-    '--cmprojpath', cmprojpath,
-
-    '--oscfname', oscfname,
-
-    '--validate',
-
-    '--egoname', 'Ego',
-
-    '--trfname', 'Overtaker',
-
-    '--rdfname', 'Overtaker_road',
-
-    '--egoinf', 'demoorr',
-
-    '--trfendmode', '2',
-
-    '--loglevel', '4',
-
-    '--logtofile',
-
-    '--logtoconsole',
-
-    '--trfmobj',
-
-    '--trajlegacy',
-
-    '--defaultman', '999s'
-
-]
-
-# Function to run the command
-
-def run_command(command):
-
-    try:
-
-        print("Running command:", " ".join(command))
-
-        subprocess.run(command, check=True)
-
-        print("Command executed successfully!")
-
-    except subprocess.CalledProcessError as e:
-
-        print(f"Error running command: {e}")
-
-# Run the osc2cm command
-
-run_command(command)
-
- 
-
-
-
-filem= "Startup_Example_Template"                     # Original file
-lookup = 'nv.Speed = '
-lookup_1 = 'nv.Lateral_Offset = '         
-lookup_5 = 'kv.SimParameters\:DStore.OutPath = SimOutput/LaneChangeISO_'  
-
-file1 = open(filem)
-all_lines = file1.readlines()
-l_num = open(filem).read()[:open(filem).read().index(lookup)].count('\n')
-l_num1 = open(filem).read()[:open(filem).read().index(lookup_1)].count('\n')
-l_num5 = open(filem).read()[:open(filem).read().index(lookup_5)].count('\n')
-
-arr = all_lines[l_num].split()
-arr1 = all_lines[l_num1].split()
-arr_5 = all_lines[l_num5].split()
-
-def listToString(s):
-    # initialize an empty string
-    str1 = " "
-    # return string
-    return (str1.join(s))
-
-
-a_list = list(range(60, 80, 10))   # range of values to be changed each time
-b_list = list(range(2, 4, 1))
-for x in a_list:  # for every value in the range
-    for y in b_list:
-        with open(filem, 'r', encoding='utf-8') as file:
-            data = file.readlines()
-        data[l_num] = lookup + str(x) + '\n'
-        data[l_num1] = lookup_1 + str(y) + '\n'
-        data[l_num5] = lookup_5 + 'speed_' + str(x) + 'LatOff_' + str(y) + '\n'
-        
-        with open(filem + 'S_'+str(x) +'_O_'+ str(y), 'w', encoding='utf-8') as file:
-            file.writelines(data)
+print("HTML file created successfully with detailed simulation results and serial numbers!")
