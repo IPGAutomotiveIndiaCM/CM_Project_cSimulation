@@ -64,6 +64,7 @@ pipeline {
                 sh '''
                     echo "Running ffffthe simulation now... in "
                     # Add your simulation commands here
+                    python3 -m pip install cmerg
                     cd Startupfiles
                     python3 Generate_Report.py
                 '''
