@@ -18,6 +18,7 @@ for file_name in erg_files:
 
     # Convert .erg file to a pandas DataFrame
     df_result = cmerg.ERG(new_file_path).to_pd()
+    print(df_result.columns)
 
     # Extract data from the DataFrame
     time = df_result["Time_s"].to_numpy()
