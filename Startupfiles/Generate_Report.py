@@ -42,7 +42,7 @@ for file_name in erg_files:
             # print("hit")
             hit_status = "Test_Case_Failed"
             break
-
+    # Add a dictionary with file information to the 'results' list
     results.append({
         'File Name': file_name,
         'Hit Status': hit_status,
@@ -101,8 +101,11 @@ html_content = f"""
             </thead>
             <tbody>
 """
+# Iterate over each row in the DataFrame 'df_results'
 for _, row in df_results.iterrows():
+    # Set the hit_class based on the 'Hit Status' column of the current row
     hit_class = 'Test_Case_Passed' if row['Hit Status'] == 'Test_Case_Passed' else 'Test_Case_Failed'
+    # Append an HTML table row for the current row's data
     html_content += f"""
                 <tr>
                     <td>{row['File Name']}</td>
