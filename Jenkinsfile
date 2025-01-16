@@ -62,6 +62,7 @@ pipeline {
                 // Placeholder for the simulation running commands
                 //call that python3 script
                 sh '''
+                    #!/bin/bash
                     echo "Running ffffthe simulation now... in "
                     # Add your simulation commands here
                     virtualenv venv
