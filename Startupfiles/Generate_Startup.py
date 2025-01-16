@@ -164,7 +164,7 @@ def listToString(s):
     return (str1.join(s))
 
 
-a_list = list(range(60, 80, 10))   # range of values to be changed each time
+a_list = list(range(50, 90, 10))   # range of values to be changed each time
 b_list = list(range(2, 4, 1))
 for x in a_list:  # for every value in the range
     for y in b_list:
