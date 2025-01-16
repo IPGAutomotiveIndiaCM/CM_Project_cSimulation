@@ -23,7 +23,7 @@ for file_name in erg_files:
     # Extract data from the DataFrame
     time = df_result["Time_s"].to_numpy()
     velocity = df_result["Car.v_m/s"].to_numpy()
-    #sensor = df_result["Sensor.Collision.Vhcl.Fr1.Count_"].to_numpy()
+    sensor = df_result["Sensor.Collision.Vhcl.Fr1.Count_"].to_numpy()
     distance = df_result["Car.Distance_m"].to_numpy()
     i = 0
     I = 0
@@ -35,7 +35,6 @@ for file_name in erg_files:
     print(time[j])
     t1=time[j]   
     #Extract time when test_case Failed
-"""
     for j in range(len(time)):
         if sensor[j] == 1:
             print(time[j])
@@ -44,7 +43,6 @@ for file_name in erg_files:
             hit_status = "Test_Case_Failed"
             break
 
-"""
     results.append({
         'File Name': file_name,
         'Hit Status': hit_status,
