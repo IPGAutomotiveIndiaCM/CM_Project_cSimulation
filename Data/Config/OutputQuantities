@@ -61,6 +61,16 @@ DStore.Quantities.normal:
 	Car.vRL
 	Car.vRR
 	Sensor.Object.RadarL.relvTgt.NearPnt.ds_p
+	Sensor.Collision.Vhcl.Fr1.Count
+	Sensor.Collision.Vhcl.Fr1.ObjId
+	Sensor.Collision.Vhcl.WFL.Count
+	Sensor.Collision.Vhcl.WFL.ObjId
+	Sensor.Collision.Vhcl.WFR.Count
+	Sensor.Collision.Vhcl.WFR.ObjId
+	Sensor.Collision.Vhcl.WRL.Count
+	Sensor.Collision.Vhcl.WRL.ObjId
+	Sensor.Collision.Vhcl.WRR.Count
+	Sensor.Collision.Vhcl.WRR.ObjId
 	DM.Brake
 	DM.BrakeLever
 	DM.Clutch
