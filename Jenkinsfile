@@ -64,6 +64,8 @@ pipeline {
                 sh '''
                     echo "Running ffffthe simulation now... in "
                     # Add your simulation commands here
+                    cd Startupfiles
+                    python3 Generate_Report.py
                 '''
             }
         }
