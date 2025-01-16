@@ -22,7 +22,7 @@ for file_name in erg_files:
     # Extract data from the DataFrame
     time = df_result["Time_s"].to_numpy()
     velocity = df_result["Car.v_m/s"].to_numpy()
-    sensor = df_result["Sensor.Collision.Vhcl.WRL.Count_"].to_numpy()
+    sensor = df_result["Sensor.Collision.Vhcl.Fr1.Count_"].to_numpy()
     distance = df_result["Car.Distance_m"].to_numpy()
     i = 0
     I = 0
