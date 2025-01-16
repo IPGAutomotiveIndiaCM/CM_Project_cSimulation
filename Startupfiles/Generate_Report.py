@@ -1,7 +1,7 @@
 import os
 import cmerg
 import pandas as pd
-
+#loading .erg file folder 
 folder_path = 'C:/CM_Projects/loaderg/SimOutput/IPGNB10343/20250115'
 erg_files = [f for f in os.listdir(folder_path) if f.lower().endswith('.erg')]
 results = []
@@ -28,10 +28,12 @@ for file_name in erg_files:
     I = 0
     hit_status = "Test_Case_Passed"
     t1=0
+    #Extract overall simualtion time 
     for j in range(len(time)):
         pass
     print(time[j])
-    t1=time[j]
+    t1=time[j]   
+    #Extract time when test_case Failed
     for j in range(len(time)):
         if sensor[j] == 1:
             print(time[j])
@@ -44,7 +46,7 @@ for file_name in erg_files:
     results.append({
         'File Name': file_name,
         'Hit Status': hit_status,
-        'Time': t1,  # Using 67th time value or N/A
+        'Time': t1, 
     })
 
     print(f"File: {file_name}, Hit Status: {hit_status}")
@@ -52,12 +54,6 @@ for file_name in erg_files:
 
 # Convert the results into a pandas DataFrame
 df_results = pd.DataFrame(results)
-
-# Output the results to an HTML file (in tabular form)
-output_html = 'output_hitsdis.html'
-df_results.to_html(output_html, index=False)
-
-print(f"HTML file created successfully at: {output_html}")
 
 # Define the HTML content (including the results)
 html_content = f"""
