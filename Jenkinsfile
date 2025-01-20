@@ -46,7 +46,7 @@ pipeline {
             steps {
                 // Placeholder for the simulation running commands
                 sh '''
-                    echo "Running ffffthe simulation now... in "
+                    echo "Running fthe simulation now... in "
                     # Add your simulation commands here
                     cd "$WORKSPACE"
                     for file in Startupfiles/Startup_Example_*;
