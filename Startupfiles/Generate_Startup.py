@@ -4,7 +4,7 @@ import subprocess
 import os
 
 # Define paths
-
+"""
 osc2cm_path = "/opt/ipg/carmaker/linux64-13.1.1/bin/osc2cm"
 
 cmprojpath = "/var/lib/jenkins/workspace/cSimulation"
@@ -104,6 +104,7 @@ def run_command(command):
 run_command(command)
 
  
+"""
 
 
 
