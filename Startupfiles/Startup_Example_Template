@@ -20,5 +20,5 @@ nv.Width_2ndSect = 2.4196
 nv.Width_3rdSect = 2.6004
 nv.Lateral_Offset = 2
 nv.Speed = 100
-kv.TestRun\:Vehicle = /var/lib/jenkins/workspace/cSimulation/Data/Vehicle/DemoCarSen
+kv.TestRun\:Vehicle = /home/cSimulation/Data/Vehicle/DemoCarSen
 kv.SimParameters\:DStore.OutPath = SimOutput/LaneChangeISO_
