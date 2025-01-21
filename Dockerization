@@ -21,7 +21,10 @@ pipeline {
                    
                     # Pull latest changes
                     git pull origin master
- 
+
+                    # Copy Dockerfile from /home/dhrithi/dockeration to the workspace folder
+                    cp /home/dhrithi/dockeration/Dockerfile /var/lib/jenkins/workspace/
+
                     # Build code
                     cd src
                     make clean
@@ -30,47 +33,6 @@ pipeline {
                     make
                     '''
                 }
-            }
-        }
-        stage('Scenarios Generation') {
-            steps {
-                sh '''
-                cd Startupfiles
-                python3 Generate_Startup.py
-                
-                '''
-                
-            }
-        }
-        stage('Simulation Running') {
-            steps {
-                // Placeholder for the simulation running commands
-                sh '''
-                    echo "Running the simulation now... in "
-                    # Add your simulation commands here
-                    cd "$WORKSPACE"
-                    for file in Startupfiles/Startup_Example_*;
-                    do
-                    
-                        src/CarMaker.linux64 "$file" -v -screen -dstore 
-                    done
-                '''
-            }
-        }
-        stage('Report Evaluation') {
-            steps {
-                // Placeholder for the simulation running commands
-                //call that python3 script
-                sh '''
-                    #!/bin/bash
-                    echo "Running ffffthe simulation now... in "
-                    # Add your simulation commands here
-                    virtualenv venv
-                    . venv/bin/activate
-                    python3 -m pip install cmerg
-                    cd Startupfiles
-                    python3 Generate_Report.py
-                '''
             }
         }
     }
