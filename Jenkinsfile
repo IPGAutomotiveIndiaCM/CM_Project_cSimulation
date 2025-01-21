@@ -65,9 +65,7 @@ pipeline {
                     #!/bin/bash
                     echo "Running ffffthe simulation now... in "
                     # Add your simulation commands here
-                    virtualenv venv
                     . venv/bin/activate
-                    python3 -m pip install cmerg
                     cd Startupfiles
                     python3 Generate_Report.py
                 '''
