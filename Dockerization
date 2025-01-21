@@ -61,6 +61,15 @@ pipeline {
             
                 # Run the Docker container
                 docker run ipgcarmaker
+                #Retrive Docker Container ID
+                conid=$(docker ps -a -q --filter ancestor=ipgcarmaker | head -n 1)
+ 
+                #Make new directory to stire results with timestamp
+                timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
+                mkdir -p /home/dhrithi/SimResults/$timestamp
+ 
+                #Copy Result Files in the local folder folder
+                docker cp $conid:/home/cSimulation/SimOutput/. /home/dhrithi/SimResults/$timestamp
             
                 '''
             }
