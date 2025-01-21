@@ -58,9 +58,9 @@ install: $(APP_NAME)
 clean:
 	-rm -f 	*~ *% *.o core
 
-app_tmp.c: Makefile $(OBJS_$(ARCH)) $(OBJS) $(LD_LIBS_MK)
-	$(QECHO) " MK     $@"
-	$Q $(CREATE_INFO_CMD)
+#app_tmp.c: Makefile $(OBJS_$(ARCH)) $(OBJS) $(LD_LIBS_MK)
+#	$(QECHO) " MK     $@"
+#	$Q $(CREATE_INFO_CMD)
 
 depend .depend: Makefile
 	$(QECHO) " MK     $@"
