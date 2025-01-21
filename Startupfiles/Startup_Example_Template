@@ -1,7 +1,7 @@
 #INFOFILE1.1 - Do not remove this line!
 FileIdent = CarMaker-Startup 1.0
 FileCreator = CarMaker 13.1.1
-TestRun = /var/lib/jenkins/workspace/cSimulation/Data/TestRun/Testrun_notHit
+TestRun = Examples/VehicleDynamics/Handling/LaneChange_ISO
 TmpFName =
 User = dhrithi
 Variation = Variation 0
