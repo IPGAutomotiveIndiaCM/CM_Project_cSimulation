@@ -24,6 +24,7 @@ pipeline {
 
                     # Copy Dockerfile from /home/dhrithi/dockeration to the workspace folder
                     cp /home/dhrithi/dockeration/Dockerfile /var/lib/jenkins/workspace/
+                    cp /home/dhrithi/dockeration/Licenses.dat /var/lib/jenkins/workspace/
 
                     # Build code
                     cd src
