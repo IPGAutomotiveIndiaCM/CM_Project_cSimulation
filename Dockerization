@@ -46,5 +46,24 @@ pipeline {
                 
             }
         }
+        stage('Simulation Running') {
+            steps {
+                    // Placeholder for the simulation running commands
+                sh '''
+                echo "Running the simulation now... in /var/lib/jenkins/workspace"
+            
+                # Change directory to /var/lib/jenkins/workspace
+                cd /var/lib/jenkins/workspace
+
+                # Build the Docker image
+                docker build -t ipgcarmaker .
+            
+                # Run the Docker container
+                docker run ipgcarmaker
+            
+        '''
+    }
+}
+
     }
 }
