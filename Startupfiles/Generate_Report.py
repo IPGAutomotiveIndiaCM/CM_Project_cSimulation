@@ -125,8 +125,3 @@ with open("simulation_report.html", "w") as file:
 
 print("HTML file created successfully with detailed simulation results!")
 
-output_path = '/home/dhrithi/simulation_report.html'
-with open(output_path, "w") as file:
-    file.write(html_content)
-
-print(f"HTML file created successfully at {output_path}!")
