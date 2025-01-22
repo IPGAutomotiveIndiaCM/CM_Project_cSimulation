@@ -2,7 +2,7 @@ import os
 import cmerg
 import pandas as pd
 #loading .erg file folder 
-folder_path = '/var/lib/jenkins/workspace/cSimulation/SimOutput'
+folder_path = '/opt/SimResults/$timestamp'
 erg_files = [f for f in os.listdir(folder_path) if f.lower().endswith('.erg')]
 results = []
 
