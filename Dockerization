@@ -23,7 +23,7 @@ pipeline {
                     git pull origin master
 
                     # Copy Dockerfile from /home/dhrithi/dockeration to the workspace folder
-                    cp /Cm_Projects/Dockerfile /var/lib/jenkins/workspace/
+                    cp /opt/Dockerfile /var/lib/jenkins/workspace/
                     cp /opt/ipg/etc/Licenses.dat /var/lib/jenkins/workspace/
                     cp -r /opt/ipg/carmaker/linux64-13.1.1 /var/lib/jenkins/workspace/
 
