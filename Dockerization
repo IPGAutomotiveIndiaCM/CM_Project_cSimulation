@@ -66,10 +66,10 @@ pipeline {
  
                 #Make new directory to stire results with timestamp
                 timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
-                mkdir -p /opt/SimResults/$timestamp
+                #mkdir -p /opt/SimResults/$timestamp
  
                 #Copy Result Files in the local folder folder
-                docker cp $conid:/home/cSimulation/SimOutput/. /opt/SimResults/$timestamp
+                docker cp $conid:/home/cSimulation/SimOutput/. /opt/SimResults
             
                 '''
             }
