@@ -56,6 +56,6 @@ def convert_rd5_to_xodr(rd5_filename, xodr_filename):
 
 # Example Usage: Save the file in the specified folder
 rd5_filename = "/var/lib/jenkins/workspace/cSimulation/Data/Road/lanechange.rd5"
-xodr_filename = "/var/lib/jenkins/workspace/cSimulation/Data/Road/traffic1.xodr"
+xodr_filename = "/var/lib/jenkins/workspace/cSimulation/Data/Road/lanechange.xodr"
 
 convert_rd5_to_xodr(rd5_filename, xodr_filename)
