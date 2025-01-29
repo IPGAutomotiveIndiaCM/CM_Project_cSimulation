@@ -1,3 +1,4 @@
+import os
 import xml.etree.ElementTree as ET
 
 # Function to read the .rd5 file as text and extract relevant information
@@ -34,6 +35,9 @@ def create_xodr_from_rd5(data, xodr_filename):
     # Add geometry (simplified example, you may need more details from the .rd5 data)
     geometry = ET.SubElement(lane_section, "geometry", x="0.0", y="0.0", hdg="0.0", length=data.get("RoadNetworkLength", "1000"))
 
+    # Ensure the directory exists
+    os.makedirs(os.path.dirname(xodr_filename), exist_ok=True)
+
     # Save the OpenDRIVE .xodr file
     xodr_tree = ET.ElementTree(xodr_root)
     xodr_tree.write(xodr_filename, encoding="UTF-8", xml_declaration=True)
@@ -50,5 +54,8 @@ def convert_rd5_to_xodr(rd5_filename, xodr_filename):
     else:
         print("Failed to read .rd5 file.")
 
-# Example Usage
-convert_rd5_to_xodr("lanechange.rd5", "traffic1.xodr")
+# Example Usage: Save the file in the specified folder
+rd5_filename = "/var/lib/jenkins/workspace/cSimulation/Data/Road/lanechange.rd5"
+xodr_filename = "/var/lib/jenkins/workspace/cSimulation/Data/Road/traffic1.xodr"
+
+convert_rd5_to_xodr(rd5_filename, xodr_filename)
