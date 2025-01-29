@@ -54,6 +54,8 @@ pipeline {
                     
                         src/CarMaker.linux64 "$file" -v -screen -dstore 
                     done
+                    cd Startupfiles
+                    python3 Export_rd5toXrdo.py
                 '''
             }
         }
