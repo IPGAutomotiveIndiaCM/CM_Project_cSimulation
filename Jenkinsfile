@@ -53,7 +53,7 @@ pipeline {
                     do
                     
                         src/CarMaker.linux64 "$file" -v -screen -dstore 
-                        /opt/ipg/control/linux64-3.0.14/bin/ipg-control -connect
+                        
                     done
                     cd Startupfiles
                     python3 Export_rd5toXrdo.py
