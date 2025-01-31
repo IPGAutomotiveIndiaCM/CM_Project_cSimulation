@@ -9,7 +9,7 @@ Instance = 000013
 SimEnd = SimEnd_000013
 DumpDDict = 1
 ApoAvailable = 0
-SaveMode = 3
+SaveMode = 2
 msHistory = 0
 DataPools:
 	/opt/ipg/carmaker/linux64-13.1.1
