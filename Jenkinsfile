@@ -37,7 +37,7 @@ pipeline {
                 sh '''
                 cd Startupfiles
                 python3 Generate_Startup.py
-                /opt/ipg/carmaker/linux64-13.1.1/bin/roadutil -convert "/var/lib/jenkins/workspace/cSimulation/Data/Road/lanechange.rd5" -o "/var/lib/jenkins/workspace/cSimulation/Data/Road/lanechange.xodr
+                
                 
                 '''
                 
@@ -56,8 +56,7 @@ pipeline {
                         src/CarMaker.linux64 "$file" -v -screen -dstore 
                         
                     done
-                    cd Startupfiles
-                    python3 Export_rd5toXrdo.py
+                    /opt/ipg/carmaker/linux64-13.1.1/bin/roadutil -convert "/var/lib/jenkins/workspace/cSimulation/Data/Road/lanechange.rd5" -o "/var/lib/jenkins/workspace/cSimulation/Data/Road/lanechange.xodr
                 '''
             }
         }
