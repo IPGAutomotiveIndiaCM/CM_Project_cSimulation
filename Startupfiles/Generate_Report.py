@@ -121,8 +121,19 @@ html_content += """
 </body>
 </html>
 """
-with open("simulation_report.html", "w") as file:
+
+html_path = "/opt/simulation_report.html"
+with open(html_path, "w") as file:
     file.write(html_content)
 
-print("HTML file created successfully with detailed simulation results!")
+print(f"HTML file created successfully and saved to {html_path}")
+html_path = "/opt/simulation_report.html"
+with open(html_path, "w") as file:
+    file.write(html_content)
+
+print(f"HTML file created successfully and saved to {html_path}")html_path = "/opt/simulation_report.html"
+with open(html_path, "w") as file:
+    file.write(html_content)
+
+print(f"HTML file created successfully and saved to {html_path}")
 
