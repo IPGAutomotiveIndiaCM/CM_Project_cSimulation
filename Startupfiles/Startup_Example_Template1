@@ -1,7 +1,7 @@
 #INFOFILE1.1 - Do not remove this line!
 FileIdent = CarMaker-Startup 1.0
 FileCreator = CarMaker 11.0.1
-TestRun = /var/lib/jenkins/workspace/cSimulation/Data/TestRun/Testrun_notHit
+TestRun = /home/cSimulation/Data/TestRun/Testrun_notHit
 TmpFName =
 User = dhrithi
 Variation = Variation 0
@@ -20,5 +20,5 @@ nv.Width_2ndSect = 2.4196
 nv.Width_3rdSect = 2.6004
 nv.Lateral_Offset = 3.0
 nv.Speed = 60
-kv.TestRun\:Vehicle = /var/lib/jenkins/workspace/cSimulation/Data/Vehicle/DemoCarSen
+kv.TestRun\:Vehicle = /home/cSimulation/Data/Vehicle/DemoCarSen
 kv.SimParameters\:DStore.OutPath = SimOutput/LaneChangeISO_
