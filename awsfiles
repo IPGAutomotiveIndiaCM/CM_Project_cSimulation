@@ -2,34 +2,24 @@ pipeline {
     agent any
     environment {
         IPGHOME = "/opt/ipg/"
-        S3_BUCKET_NAME = 'ipgindia'  // Your S3 bucket name
-        TESTRUN_PATH = '/var/lib/jenkins/workspace/cSimulation/Data/TestRun'  // Path to the TestRun directory
+        S3_BUCKET_NAME = 'ipgindia'
+        TESTRUN_PATH = '/var/lib/jenkins/workspace/cSimulation/Data/TestRun'
+        AWS_ACCESS_KEY_ID = 'AKIA46ZDE65WIOWZEEYQ'
+        AWS_SECRET_ACCESS_KEY = 'n6P86OW3IVzR2iqM6IUyFT0VY8CISpXA2DnLk5SZ'
+        AWS_DEFAULT_REGION = 'us-east-2'  // Set your region
     }
 
     stages {
         stage('Build Code') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'cSimulation', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
-                    // Checkout code
                     checkout scm
                     sh '''
-                    # Configure Git
                     git clean -fd
                     git checkout master
-                    git config user.email "dhrithi.dk@ipg-automotive.com"
-                    git config user.name "IPGAutomotiveIndiaCM"
-                   
-                    # Set the remote URL with credentials
-                    git remote set-url origin https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/CM_Project_cSimulation.git
-                   
-                    # Pull latest changes
                     git pull origin master
- 
-                    # Build code
                     cd src
                     make clean
-                    ls -la
-                    pwd
                     make
                     '''
                 }
@@ -39,9 +29,8 @@ pipeline {
         stage('Upload to S3') {
             steps {
                 script {
-                    // Upload the entire TestRun directory or specific files from it to S3
+                    // Upload the TestRun directory to S3
                     sh """
-                        # Upload TestRun directory to S3
                         aws s3 cp ${TESTRUN_PATH} s3://${S3_BUCKET_NAME}/auto-pilot/TestRun/ --recursive
                     """
                 }
