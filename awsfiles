@@ -4,9 +4,6 @@ pipeline {
         IPGHOME = "/opt/ipg/"
         S3_BUCKET_NAME = 'ipgindia'
         TESTRUN_PATH = '/var/lib/jenkins/workspace/cSimulation/Data/TestRun'
-        AWS_ACCESS_KEY_ID = 'AKIA46ZDE65WIOWZEEYQ'
-        AWS_SECRET_ACCESS_KEY = 'n6P86OW3IVzR2iqM6IUyFT0VY8CISpXA2DnLk5SZ'
-        AWS_DEFAULT_REGION = 'us-east-2'  // Set your region
     }
 
     stages {
