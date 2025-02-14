@@ -1,0 +1,61 @@
+pipeline {
+    agent any
+    environment {
+        IPGHOME = "/opt/ipg/"
+        S3_BUCKET_NAME = 'your-s3-bucket-name'  // Define your S3 bucket
+    }
+
+    stages {
+        stage('Build Code') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'cSimulation', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+                    // Checkout code
+                    checkout scm
+                    sh '''
+                    # Configure Git
+                    git clean -fd
+                    git checkout master
+                    git config user.email "dhrithi.dk@ipg-automotive.com"
+                    git config user.name "IPGAutomotiveIndiaCM"
+                   
+                    # Set the remote URL with credentials
+                    git remote set-url origin https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/CM_Project_cSimulation.git
+                   
+                    # Pull latest changes
+                    git pull origin master
+ 
+                    # Build code
+                    cd src
+                    make clean
+                    ls -la
+                    pwd
+                    make
+                    '''
+                }
+            }
+        }
+
+        stage('Upload to S3') {
+            steps {
+                // Assuming the built artifact is in src directory and named 'artifact.zip' (you can replace it as per your actual artifact)
+                script {
+                    def artifact = 'src/artifact.zip'  // Change this to your actual artifact's name and path
+
+                    // Upload the artifact to S3
+                    sh """
+                        aws s3 cp ${artifact} s3://${S3_BUCKET_NAME}/auto-pilot/${artifact}
+                    """
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build and upload to S3 completed successfully!'
+        }
+        failure {
+            echo 'Build failed. Check the logs.'
+        }
+    }
+}
