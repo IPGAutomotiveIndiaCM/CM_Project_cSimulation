@@ -38,7 +38,7 @@ pipeline {
                 script {
                     // Upload the TestRun directory to S3
                     sh """
-                        aws batch submit-job --job-name demo_job_3 --job-queue demo_ipg --job-definition demo_ipg_job_def --array-properties size=3 --region us-east-2 --container-overrides '{     "vcpus": 1,     "memory": 1000,      "environment": [       {         "name": "TESTRUN_FILE_S3_URL",         "value": "s3://ipgindia/auto-pilot/TestRun/"       },       {         "name": "RESULT_FILE_S3_URL",         "value": "s3://ipgindia/auto-pilot/Results/"       }     ]   }'
+                        aws batch submit-job --job-name demo_job_3 --job-queue demo_ipg --job-definition demo_ipg_job_def --array-properties size=3 --region us-east-2 --container-overrides '{     "vcpus": 1,     "memory": 1000,      "environment": [       {         "name": "TESTRUN_FILE_S3_URL",         "value": "s3://ipgindia/auto-pilot/TestRun/"       },       {         "name": "RESULT_FILE_S3_URL",         "value": "s3://ipgindia/auto-pilot/Results/"},  {    'name':'BATCH_JOB_SIZE',    "value":"1"    },   { 'name':'CONSECUTIVE_JOBS',  "value":"1"    }     ]   }'
                         
                     """
                 }
