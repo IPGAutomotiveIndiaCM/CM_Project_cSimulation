@@ -2,7 +2,8 @@ pipeline {
     agent any
     environment {
         IPGHOME = "/opt/ipg/"
-        S3_BUCKET_NAME = 'your-s3-bucket-name'  // Define your S3 bucket
+        S3_BUCKET_NAME = 'ipgindia'  // Your S3 bucket name
+        TESTRUN_PATH = '/var/lib/jenkins/workspace/cSimulation/Data/TestRun'  // Path to the TestRun directory
     }
 
     stages {
@@ -37,13 +38,11 @@ pipeline {
 
         stage('Upload to S3') {
             steps {
-                // Assuming the built artifact is in src directory and named 'artifact.zip' (you can replace it as per your actual artifact)
                 script {
-                    def artifact = 'src/artifact.zip'  // Change this to your actual artifact's name and path
-
-                    // Upload the artifact to S3
+                    // Upload the entire TestRun directory or specific files from it to S3
                     sh """
-                        aws s3 cp ${artifact} s3://${S3_BUCKET_NAME}/auto-pilot/${artifact}
+                        # Upload TestRun directory to S3
+                        aws s3 cp ${TESTRUN_PATH} s3://${S3_BUCKET_NAME}/auto-pilot/TestRun/ --recursive
                     """
                 }
             }
