@@ -33,6 +33,17 @@ pipeline {
                 }
             }
         }
+        stage('aws batch sumit') {
+            steps {
+                script {
+                    // Upload the TestRun directory to S3
+                    sh """
+                        aws batch submit-job --job-name demo_job_3 --job-queue demo_ipg --job-definition demo_ipg_job_def --array-properties size=3 --region us-east-2 --container-overrides '{     "vcpus": 2,     "memory": 4096,     "command": [       "echo",       "Hello from AWS Batch!"     ],     "environment": [       {         "name": "TestRunURL",         "value": "s3://ipgindia/auto-pilot/TestRun/"       },       {         "name": "ResultURL",         "value": "s3://ipgindia/auto-pilot/Results/"       }     ]   }'
+                        
+                    """
+                }
+            }
+        }
     }
 
     post {
