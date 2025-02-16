@@ -70,7 +70,7 @@ pipeline {
                     # Add your simulation commands here
                     . venv/bin/activate
                      cd Startupfiles
-                    #python3 Generate_Report.py
+                    python3 Generate_Report.py
                 '''
             }
         }
