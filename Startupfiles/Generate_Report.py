@@ -2,8 +2,8 @@ import os
 import cmerg
 import pandas as pd
 #loading .erg file folder 
-folder_path = '/opt/SimResults'
-#folder_path = '/var/lib/jenkins/workspace/cSimulation/SimOutput'
+#folder_path = '/opt/SimResults'
+folder_path = '/var/lib/jenkins/workspace/cSimulation/SimOutput'
 erg_files = [f for f in os.listdir(folder_path) if f.lower().endswith('.erg')]
 results = []
 
@@ -127,7 +127,7 @@ with open(html_path, "w") as file:
     file.write(html_content)
 
 print(f"HTML file created successfully and saved to {html_path}")
-html_path = "/opt/simulation_report.html"
+html_path = "/home/dhrithi/simulation_report.html"
 with open(html_path, "w") as file:
     file.write(html_content)
 
