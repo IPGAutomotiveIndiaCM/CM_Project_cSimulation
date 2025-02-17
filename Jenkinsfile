@@ -66,7 +66,7 @@ pipeline {
                 //call that python3 script
                 sh '''
                     #!/bin/bash
-                    echo "Running the simulation now... in "
+                    echo "Running the simulation now... in this stage "
                     # Add your simulation commands here
                     . venv/bin/activate
                      cd Startupfiles
