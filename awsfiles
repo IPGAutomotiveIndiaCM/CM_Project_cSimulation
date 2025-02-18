@@ -88,33 +88,17 @@ def submitResult = sh(script: """
     }
 }
       stage('Result to jenkins') {
-    steps {
-        script {
-            // List the S3 directory and extract the dynamic IP address folder
-            def ipAddress = sh(script: """
-                aws s3 ls s3://ipgindia/auto-pilot/Results/ --recursive --region us-east-2 | grep '20250218' | awk -F'/' '{print \$4}'
-            """, returnStdout: true).trim()
-
-            // Check if the dynamic IP address was found
-            if (!ipAddress) {
-                error("Could not determine the dynamic IP address folder from S3")
+            steps {
+                script {
+                    // Upload the TestRun directory to S3
+                    sh """
+                       aws s3 cp s3://ipgindia/auto-pilot/Results/ip-172-31-28-96.us-east-2.compute.internal/20250218/ /var/lib/jenkins/workspace/cSimulation/SimOutput --recursive 
+                        
+                    """
+                }
             }
-
-            echo "Detected dynamic IP path: ${ipAddress}"
-
-            // Construct the full source path for the results based on the detected IP address
-            def sourcePath = "s3://ipgindia/auto-pilot/Results/${ipAddress}/20250218/"
-            
-            // Define the destination folder on the Jenkins workspace
-            def destFolder = "/var/lib/jenkins/workspace/cSimulation/SimOutput"
-            
-            // Copy the results from the dynamically generated S3 path to the Jenkins workspace
-            sh """
-                aws s3 cp ${sourcePath} ${destFolder} --recursive
-            """
         }
-    }
-}
+
  
        
     }
