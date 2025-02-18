@@ -33,49 +33,73 @@ pipeline {
                 }
             }
         }
-        stage('aws batch sumit') {
+       stage('aws batch submit') {
             steps {
                 script {
-                    // Upload the TestRun directory to S3
-                    sh """
-                        aws batch submit-job --job-name demo_job_3 --job-queue demo_ipg --job-definition demo_ipg_job_def --array-properties size=3 --region us-east-2 --container-overrides '{     "vcpus": 1,     "memory": 1000,      "environment": [       {         "name": "TESTRUN_FILE_S3_URL",         "value": "s3://ipgindia/auto-pilot/TestRun/"       },       {         "name": "RESULT_FILE_S3_URL",         "value": "s3://ipgindia/auto-pilot/Results/"},  {    "name":"BATCH_JOB_SIZE",    "value":"1"    },   { "name":"CONSECUTIVE_JOBS",  "value":"1"    }     ]   }'
-                        
-                    """
-                }
-            }
-        }
-        stage('Wait for AWS Batch job to finish') {
-            steps {
-                script {
-                    def jobId = sh(script: "aws batch describe-jobs --jobs demo_job_3 --region us-east-2 --query 'jobs[0].status' --output text", returnStdout: true).trim()
-            
-                     // Wait for the AWS Batch job to complete
-                    while (jobId != 'SUCCEEDED' && jobId != 'FAILED') {
-                        echo "Waiting for job to complete... Current status: ${jobId}"
-                        sleep(60)  // Sleep for 1 minute before checking again
-                        jobId = sh(script: "aws batch describe-jobs --jobs demo_job_3 --region us-east-2 --query 'jobs[0].status' --output text", returnStdout: true).trim()
-                    }
+                    // Submit the AWS Batch job and capture the job ID
+                    def submitResult = sh(script: """
+                        aws batch submit-job --job-name demo_job_3 --job-queue demo_ipg --job-definition demo_ipg_job_def --array-properties size=3 --region us-east-2 --container-overrides '{
+                        "vcpus": 1,
+                        "memory": 1000,
+                        "environment": [
+                            {"name": "TESTRUN_FILE_S3_URL", "value": "s3://ipgindia/auto-pilot/TestRun/"},
+                            {"name": "RESULT_FILE_S3_URL", "value": "s3://ipgindia/auto-pilot/Results/"},
+                            {"name": "BATCH_JOB_SIZE", "value": "1"},
+                            {"name": "CONSECUTIVE_JOBS", "value": "1"}
+                        ]
+                    }'
+                """, returnStdout: true).trim()
 
-                    if (jobId == 'FAILED') {
-                        error("AWS Batch job failed!")
-                    } else {
-                        echo "AWS Batch job completed successfully."
-                    }
-                }
+                // Extract the job ID from the response
+                def jobId = submitResult =~ /"jobId": "(.*?)"/
+                    jobId = jobId[0][1]
+
+                 // Save the job ID for the next stage
+                currentBuild.description = "Job ID: ${jobId}"
+                echo "Submitted AWS Batch job with Job ID: ${jobId}"
             }
         }
-        stage('Result to jenkins') {
-            steps {
-                script {
-                    // Upload the TestRun directory to S3
-                    sh """
-                       aws s3 cp s3://ipgindia/auto-pilot/Results/ip-172-31-28-96.us-east-2.compute.internal/20250218/ /var/lib/jenkins/workspace/cSimulation/SimOutput --recursive 
-                        
-                    """
+    }
+
+    stage('Wait for AWS Batch job to finish') {
+        steps {
+            script {
+                def jobId = currentBuild.description.split(":")[1].trim()
+
+                // Check job status
+                def status = sh(script: """
+                    aws batch describe-jobs --jobs ${jobId} --region us-east-2 --query 'jobs[0].status' --output text
+                """, returnStdout: true).trim()
+
+                // Wait for the job to complete
+                while (status != 'SUCCEEDED' && status != 'FAILED') {
+                    echo "Waiting for job to complete... Current status: ${status}"
+                    sleep(60)  // Sleep for 1 minute before checking again
+                    status = sh(script: """
+                        aws batch describe-jobs --jobs ${jobId} --region us-east-2 --query 'jobs[0].status' --output text
+                    """, returnStdout: true).trim()
+                }
+
+                if (status == 'FAILED') {
+                    error("AWS Batch job failed!")
+                } else {
+                    echo "AWS Batch job completed successfully."
                 }
             }
         }
     }
+
+    stage('Result to jenkins') {
+        steps {
+            script {
+                // Copy results from S3 to Jenkins workspace
+                sh """
+                    aws s3 cp s3://ipgindia/auto-pilot/Results/ip-172-31-28-96.us-east-2.compute.internal/20250218/ /var/lib/jenkins/workspace/cSimulation/SimOutput --recursive
+                """
+            }
+        }
+    }
+
 
     post {
         success {
