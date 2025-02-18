@@ -44,6 +44,17 @@ pipeline {
                 }
             }
         }
+        stage('Result to jenkins') {
+            steps {
+                script {
+                    // Upload the TestRun directory to S3
+                    sh """
+                       aws s3 cp s3://ipgindia/auto-pilot/Results/ip-172-31-28-96.us-east-2.compute.internal/20250218/ /var/lib/jenkins/workspace/cSimulation/SimOutput --recursive 
+                        
+                    """
+                }
+            }
+        }
     }
 
     post {
