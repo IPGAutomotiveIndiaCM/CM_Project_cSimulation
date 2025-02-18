@@ -44,6 +44,26 @@ pipeline {
                 }
             }
         }
+        stage('Wait for AWS Batch job to finish') {
+            steps {
+                script {
+                    def jobId = sh(script: "aws batch describe-jobs --jobs demo_job_3 --region us-east-2 --query 'jobs[0].status' --output text", returnStdout: true).trim()
+            
+                     // Wait for the AWS Batch job to complete
+                    while (jobId != 'SUCCEEDED' && jobId != 'FAILED') {
+                        echo "Waiting for job to complete... Current status: ${jobId}"
+                        sleep(60)  // Sleep for 1 minute before checking again
+                        jobId = sh(script: "aws batch describe-jobs --jobs demo_job_3 --region us-east-2 --query 'jobs[0].status' --output text", returnStdout: true).trim()
+                    }
+
+                    if (jobId == 'FAILED') {
+                        error("AWS Batch job failed!")
+                    } else {
+                        echo "AWS Batch job completed successfully."
+                    }
+                }
+            }
+        }
         stage('Result to jenkins') {
             steps {
                 script {
