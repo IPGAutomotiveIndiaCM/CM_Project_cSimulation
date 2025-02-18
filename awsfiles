@@ -3,7 +3,7 @@ pipeline {
     environment {
         IPGHOME = "/opt/ipg/"
         S3_BUCKET_NAME = 'ipgindia'
-        TESTRUN_PATH = '/var/lib/jenkins/workspace/cSimulation/Data/TestRun'
+        TESTRUN_PATH = '/var/lib/jenkins/workspace/cSimulation/Data/TestRun12'
     }
 
     stages {
