@@ -1,7 +1,7 @@
 #INFOFILE1.1 - Do not remove this line!
 FileIdent = CarMaker-Startup 1.0
-FileCreator = CarMaker 11.0.1
-TestRun = /var/lib/jenkins/workspace/cSimulation/Data/TestRun/Testrun_notHit
+FileCreator = CarMaker 13.1.1
+TestRun = /var/lib/jenkins/workspace/cSimulation/Data/TestRun_13/Testrun_notHit
 TmpFName =
 User = dhrithi
 Variation = Variation 0
@@ -12,7 +12,7 @@ ApoAvailable = 0
 SaveMode = 2
 msHistory = 0
 DataPools:
-	/opt/ipg/carmaker/linux64-11.0.1
+	/opt/ipg/carmaker/linux64-13.1.1
 nv.PylonShiftBkCoef = 0.15
 nv.PylonShiftFdCoef = 0.25
 nv.Width_1stSect = 2.2388000000000003
