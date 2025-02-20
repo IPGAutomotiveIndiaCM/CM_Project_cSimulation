@@ -22,8 +22,8 @@ pipeline {
                 # Pull latest changes
                 git pull origin master
 
-                # Create the temp_movie folder outside the cSimulation directory
-                mkdir -p $WORKSPACE/temp_movie  # This will create temp_movie folder in the root of the workspace
+                # Create the temp_movie folder outside of the 'cSimulation' directory
+                mkdir -p $(dirname $WORKSPACE)/temp_movie  # Creates the folder in the parent of the cSimulation directory
 
                 # Build code
                 cd src
@@ -35,6 +35,8 @@ pipeline {
             }
         }
     }
+
+
 
         stage('Scenarios Generation') {
             steps {
