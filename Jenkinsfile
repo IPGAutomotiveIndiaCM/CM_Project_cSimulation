@@ -80,5 +80,19 @@ pipeline {
                 '''
             }
         }
+        stage('Export Movie') {
+        steps {
+            script {
+                // Run the export_movie.sh script
+                sh '''
+                # Ensure the script is executable
+                chmod +x /var/lib/jenkins/workspace/export_movie.sh
+                
+                # Run the script
+                /var/lib/jenkins/workspace/export_movie.sh
+                '''
+            }
+        }
+    }
     }
 }
