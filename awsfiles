@@ -100,6 +100,18 @@ def submitResult = sh(script: """
                 }
             }
         }
+    stage('Rport to s3 ') {
+            steps {
+                script {
+                    // Upload the result directory to S3
+                    sh """
+                       aws s3 cp ${RESULT_FILE_S3_URL} /var/lib/jenkins/workspace/cSimulation/SimOutput --recursive --exclude "*" --include "*.erg"
+                       aws s3 cp ${RESULT_FILE_S3_URL} /var/lib/jenkins/workspace/cSimulation/SimOutput --recursive --exclude "*" --include "*.erg.info"
+                       
+                    """
+                }
+            }
+        }
 
  
        
