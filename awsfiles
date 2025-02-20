@@ -4,6 +4,7 @@ pipeline {
         IPGHOME = "/opt/ipg/"
         S3_BUCKET_NAME = 'ipgindia'
         TESTRUN_PATH = '/var/lib/jenkins/workspace/cSimulation/Data/TestRun'
+        RESULT_FILE_S3_URL='s3://ipgindia/auto-pilot/Results/'
     }
 
     stages {
