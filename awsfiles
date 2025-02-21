@@ -4,7 +4,7 @@ pipeline {
         IPGHOME = "/opt/ipg/"
         S3_BUCKET_NAME = 'ipgindia'
         TESTRUN_PATH = '/var/lib/jenkins/workspace/cSimulation/Data/TestRun'
-        RESULT_FILE_S3_URL='s3://ipgindia/auto-pilot/Results/'
+        RESULT_FILE_S3_URL='s3://ipgindia/Results/'
         Text_path='/var/lib/jenkins/workspace/cSimulation'
     }
 
@@ -30,7 +30,7 @@ pipeline {
                 script {
                     // Upload the TestRun directory to S3
                     sh """
-                        aws s3 cp ${TESTRUN_PATH} s3://${S3_BUCKET_NAME}/auto-pilot/TestRun/ --recursive
+                        aws s3 cp ${TESTRUN_PATH} s3://${S3_BUCKET_NAME}/TestRun/ --recursive
                     """
                 }
             }
@@ -40,7 +40,7 @@ pipeline {
                 script {
                     // Upload the TestRun directory to S3
                     sh """
-                        aws s3 cp ${Text_path}/dummy.txt s3://ipgindia/auto-pilot/TestRun/
+                        aws s3 cp ${Text_path}/dummy.txt s3://ipgindia/
                     """
                 }
             }
