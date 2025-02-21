@@ -4,8 +4,7 @@ pipeline {
         IPGHOME = "/opt/ipg/"
         S3_BUCKET_NAME = 'ipgindia'
         TESTRUN_PATH = '/var/lib/jenkins/workspace/cSimulation/Data/TestRun'
-        RESULT_FILE_S3_URL='s3://ipgindia/Results/'
-        Text_path='/var/lib/jenkins/workspace/cSimulation'
+        RESULT_FILE_S3_URL='s3://ipgindia/auto-pilot/Results/'
     }
 
     stages {
@@ -30,7 +29,7 @@ pipeline {
                 script {
                     // Upload the TestRun directory to S3
                     sh """
-                        aws s3 cp ${TESTRUN_PATH} s3://${S3_BUCKET_NAME}/TestRun/ --recursive
+                        aws s3 cp ${TESTRUN_PATH} s3://${S3_BUCKET_NAME}/auto-pilot/TestRun/ --recursive
                     """
                 }
             }
@@ -39,9 +38,26 @@ pipeline {
             steps {
                 script {
                     // Upload the TestRun directory to S3
-                    sh """
-                        aws s3 cp ${Text_path}/dummy.txt s3://ipgindia/
-                    """
+def submitResult = sh(script: """
+                aws batch submit-job --job-name demo_job_3 --job-queue demo_ipg --job-definition demo_ipg_job_def --array-properties size=3 --region us-east-2 --container-overrides '{
+                    "vcpus": 1,
+                    "memory": 1000,
+                    "environment": [
+                        {"name": "TESTRUN_FILE_S3_URL", "value": "s3://ipgindia/auto-pilot/TestRun/"},
+                        {"name": "RESULT_FILE_S3_URL", "value": "s3://ipgindia/auto-pilot/Results/"},
+                        {"name": "BATCH_JOB_SIZE", "value": "1"},
+                        {"name": "CONSECUTIVE_JOBS", "value": "1"}
+                    ]
+                }'
+            """, returnStdout: true).trim()
+
+            // Extract the job ID from the response
+            def jobId = submitResult =~ /"jobId": "(.*?)"/
+            jobId = jobId[0][1]
+
+            // Save the job ID for the next stage
+            currentBuild.description = "Job ID: ${jobId}"
+            echo "Submitted AWS Batch job with Job ID: ${jobId}"
                 }
             }
         }
@@ -84,7 +100,7 @@ pipeline {
                 }
             }
         }
-    stage('Report to s3 ') {
+    stage('Rport to s3 ') {
             steps {
                 script {
                     // Upload the result directory to S3
