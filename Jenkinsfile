@@ -89,7 +89,7 @@ pipeline {
                 #chmod +x /var/lib/jenkins/workspace/export_movie.sh
                 
                 # Run the script
-                /var/lib/jenkins/workspace/export_movie.sh
+                #/var/lib/jenkins/workspace/export_movie.sh
                 '''
             }
         }
