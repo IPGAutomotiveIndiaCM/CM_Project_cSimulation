@@ -108,7 +108,7 @@ run_command(command)
 
 
 
-filem= "Startup_Example_Template"                     # Original file
+filem= "/var/lib/jenkins/workspace/cSimulation/Startupfiles/Startup_Example_Template"                     # Original file
 lookup = 'nv.Speed = '
 lookup_1 = 'nv.Lateral_Offset = '         
 lookup_5 = 'kv.SimParameters\:DStore.OutPath = SimOutput/LaneChangeISO_'  
@@ -143,7 +143,7 @@ for x in a_list:  # for every value in the range
         with open(filem + 'S_'+str(x) +'_O_'+ str(y), 'w', encoding='utf-8') as file:
             file.writelines(data)
 
-filem= "Startup_Example_Template1"                     # Original file
+"""filem= "Startup_Example_Template1"                     # Original file
 lookup = 'nv.Speed = '
 lookup_1 = 'nv.Lateral_Offset = '         
 lookup_5 = 'kv.SimParameters\:DStore.OutPath = SimOutput/LaneChangeISO_'  
@@ -176,5 +176,5 @@ for x in a_list:  # for every value in the range
         data[l_num5] = lookup_5 + 'speed_' + str(x) + 'LatOff_' + str(y) + '\n'
         
         with open(filem + 'S_'+str(x) +'_O_'+ str(y), 'w', encoding='utf-8') as file:
-            file.writelines(data)
+            file.writelines(data)"""
 
