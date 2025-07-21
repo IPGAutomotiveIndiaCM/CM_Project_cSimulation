@@ -140,6 +140,77 @@ DStore.Quantities.normal:
 	Vhcl.*.LongSlip
 	Vhcl.*.SideSlip
 	Vhcl.sRoad
+	Vhcl.FR.Fz
+        Vhcl.RL.FyVhcl.RR.rot
+	Vhcl.FL.Fx      
+	Vhcl.FR.rot     
+	Vhcl.RL.FzVhcl.RR.rx
+	Vhcl.FL.Fy      
+	Vhcl.FR.rx      
+	Vhcl.RL.rotVhcl.RR.ry
+	Vhcl.FL.Fz      
+	Vhcl.FR.ry      
+	Vhcl.RL.rxVhcl.RR.rz
+	Vhcl.FL.rot     
+	Vhcl.FR.rz      
+	Vhcl.RL.ryVhcl.RR.tx
+	Vhcl.FL.rx      
+	Vhcl.FR.tx      
+	Vhcl.RL.rzVhcl.RR.ty
+	Vhcl.FL.ry      
+	Vhcl.FR.ty      
+	Vhcl.RL.txVhcl.RR.tz
+	Vhcl.FL.rz      
+	Vhcl.FR.tz      
+	Vhcl.RL.tyVhcl.Roll
+	Vhcl.FL.tx      
+	Vhcl.Fr1.x      
+	Vhcl.RL.tzVhcl.Steer.Ang
+	Vhcl.FL.ty      
+	Vhcl.Fr1.y      
+	Vhcl.RR.FxVhcl.Steer.Trq
+	Vhcl.FL.tz      
+	Vhcl.Fr1.z      
+	Vhcl.RR.FyVhcl.Yaw
+	Vhcl.FR.Fx      
+	Vhcl.Pitch      
+	Vhcl.RR.FzVhcl.v
+	Vhcl.FR.Fy      
+	Vhcl.RL.Fx
+	Vhcl.RL.Fy      
+	Vhcl.RL.tx      
+	Vhcl.RR.rotVhcl.RR.tz
+	Vhcl.RL.Fz      
+	Vhcl.RL.ty      
+	Vhcl.RR.rxVhcl.Roll
+	Vhcl.RL.rot     
+	Vhcl.RL.tz      
+	Vhcl.RR.ryVhcl.Steer.Ang
+	Vhcl.RL.rx      
+	Vhcl.RR.Fx      
+	Vhcl.RR.rzVhcl.Steer.Trq
+	Vhcl.RL.ry      
+	Vhcl.RR.Fy      
+	Vhcl.RR.txVhcl.Yaw
+	Vhcl.RL.rz      
+	Vhcl.RR.Fz      
+	Vhcl.RR.tyVhcl.v
+	Vhcl.RR.rot     
+	Vhcl.RR.rz      
+	Vhcl.RR.tzVhcl.Steer.Trq
+	Vhcl.RR.rx      
+	Vhcl.RR.tx      
+	Vhcl.RollVhcl.Yaw
+	Vhcl.RR.ry      
+	Vhcl.RR.ty      
+	Vhcl.Steer.AngVhcl.v
+	Vhcl.RR.tz      
+	Vhcl.Steer.Ang  
+	Vhcl.YawVhcl.v
+	Vhcl.Roll       
+	Vhcl.Steer.Trq
+	Vhcl.Yaw  
+	Vhcl.v
 
 DStore.Quantities.slow:
 
