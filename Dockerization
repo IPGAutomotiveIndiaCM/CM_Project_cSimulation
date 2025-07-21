@@ -66,7 +66,7 @@ pipeline {
  
                 #Make new directory to stire results with timestamp
                 timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
-                #mkdir -p /home/ubuntu/Documents/$timestamp
+                mkdir -p /home/ubuntu/Documents/$timestamp
  
                 #Copy Result Files in the local folder folder
                 docker cp $conid:/home/cSimulation/SimOutput/. /home/ubuntu/Documents
