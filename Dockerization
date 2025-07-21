@@ -25,6 +25,9 @@ pipeline {
                     # Copy Dockerfile from /home/dhrithi/dockeration to the workspace folder
                     cp /opt/Dockerfile /var/lib/jenkins/workspace/
                     cp /opt/Licenses.dat /var/lib/jenkins/workspace/
+                    cp /opt/Camera.cfg /var/lib/jenkins/workspace/
+                    cp /opt/erg_to_mp4.tcl /var/lib/jenkins/workspace/
+                    cp /opt/export_movie.sh /var/lib/jenkins/workspace/
                     cp -r /opt/ipg/carmaker/linux64-13.1.1 /var/lib/jenkins/workspace/
 
                     # Build code
