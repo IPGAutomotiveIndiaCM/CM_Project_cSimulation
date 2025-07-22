@@ -154,6 +154,7 @@ DStore.Quantities.normal:
 	Vhcl.FL.rot     
 	Vhcl.FR.rz      
 	Vhcl.RL.ryVhcl.RR.tx
+	Vhcl.Distance
 	Vhcl.FL.rx      
 	Vhcl.FR.tx      
 	Vhcl.RL.rzVhcl.RR.ty
