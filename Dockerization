@@ -60,19 +60,19 @@ pipeline {
                 cd /var/lib/jenkins/workspace
 
                 # Build the Docker image
-                #docker build -t ipgcarmaker .
+                docker build -t ipgcarmaker .
             
                 # Run the Docker container
-                #docker run ipgcarmaker
+                docker run ipgcarmaker
                 #Retrive Docker Container ID
-                #conid=$(docker ps -a -q --filter ancestor=ipgcarmaker | head -n 1)
+                conid=$(docker ps -a -q --filter ancestor=ipgcarmaker | head -n 1)
  
                 #Make new directory to stire results with timestamp
                 #timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
                 #mkdir -p /home/ubuntu/Documents/$timestamp
  
                 #Copy Result Files in the local folder folder
-                #docker cp $conid:/home/cSimulation/SimOutput/. /home/ubuntu/Documents
+                docker cp $conid:/home/cSimulation/SimOutput/. /var/lib/jenkins/workspace/cSimulation/SimOutput
             
                 '''
             }
