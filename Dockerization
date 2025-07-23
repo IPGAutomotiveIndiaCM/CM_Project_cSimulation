@@ -29,7 +29,7 @@ pipeline {
                     cp /opt/erg_to_mp4.tcl /var/lib/jenkins/workspace/
                     cp /opt/export_movie.sh /var/lib/jenkins/workspace/
                     cp -r /opt/ipg/carmaker/linux64-13.1.1 /var/lib/jenkins/workspace/
-
+                    mkdir -p /var/lib/jenkins/workspace/Movie
                     # Build code
                     cd src
                     make clean
