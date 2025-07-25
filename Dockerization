@@ -77,20 +77,29 @@ pipeline {
                 '''
             }
         }
+        stage('Movie Export') {
+            steps {
+                // Placeholder for the simulation running commands
+                //call that python3 script
+                sh '''
+                    cd /var/lib/jenkins/workspace/
+                    ls -la
+                    ./export_movie.sh
+                '''
+            }
+        }
         stage('Report Evaluation') {
             steps {
                 // Placeholder for the simulation running commands
                 //call that python3 script
                 sh '''
-                    #!/bin/bash
+                    !/bin/bash
                     echo "Running ffffthe simulation now... in "
-                    # Add your simulation commands here
-                    #. venv/bin/activate
-                     #cd Startupfiles
-                     #python3 Generate_Report.py
-                    cd /var/lib/jenkins/workspace/
-                    ls -la
-                    ./export_movie.sh
+                     Add your simulation commands here
+                    . venv/bin/activate
+                     cd python_Code
+                     python3 Generate_Report.py
+
                 '''
             }
         }
