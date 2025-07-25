@@ -96,7 +96,8 @@ pipeline {
         
                     # Activate virtual environment and run script
                     . venv/bin/activate
-                    cd Startupfiles
+                    cd python_Code
+                    python3 -m venv venv
                     python3 Generate_Report.py
                 '''
             }
