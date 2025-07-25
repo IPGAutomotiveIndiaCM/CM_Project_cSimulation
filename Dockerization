@@ -89,19 +89,19 @@ pipeline {
             }
         }
         stage('Report Evaluation') {
-            steps {
-                // Placeholder for the simulation running commands
-                //call that python3 script
-                sh '''
-                    #!/bin/bash
-                    echo "Running ffffthe simulation now... in "
-                     Add your simulation commands here
-                    . venv/bin/activate
-                     cd python_Code
-                     python3 Generate_Report.py
-
-                '''
+        steps {
+            // Placeholder for the simulation running commands
+            sh '''
+                #!/bin/bash
+                echo "Running the simulation now..."
+    
+                # Add your simulation commands here
+                . venv/bin/activate
+                cd python_Code
+                python3 Generate_Report.py
+            '''
             }
         }
+
     }
 }
