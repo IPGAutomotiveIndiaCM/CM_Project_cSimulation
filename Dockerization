@@ -93,7 +93,7 @@ pipeline {
                 // Placeholder for the simulation running commands
                 //call that python3 script
                 sh '''
-                    !/bin/bash
+                    #!/bin/bash
                     echo "Running ffffthe simulation now... in "
                      Add your simulation commands here
                     . venv/bin/activate
