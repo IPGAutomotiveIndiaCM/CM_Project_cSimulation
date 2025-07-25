@@ -95,9 +95,9 @@ pipeline {
                     echo "Running the simulation now... in this stage"
         
                     # Activate virtual environment and run script
-                    . venv/bin/activate
                     cd python_Code
                     python3 -m venv venv
+                    . venv/bin/activate
                     python3 Generate_Report.py
                 '''
             }
