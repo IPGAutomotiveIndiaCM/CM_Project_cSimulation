@@ -95,15 +95,15 @@ pipeline {
                     echo "Running the simulation now... in this stage"
                     
                     # Activate virtual environment and run script
-                    cd python_Code
-                    python3 -m venv venv
-                    . venv/bin/activate
+                    #cd python_Code
+                    #python3 -m venv venv
+                    #. venv/bin/activate
                     
                     # Install cmerg in the new virtual environment
-                    pip install cmerg
+                    #pip install cmerg
                     
                     # Run your script
-                    python3 Generate_Report.py
+                    #python3 Generate_Report.py
 
                 '''
             }
