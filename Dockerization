@@ -82,9 +82,9 @@ pipeline {
                 // Placeholder for the simulation running commands
                 //call that movie export script
                 sh '''
-                    #cd /var/lib/jenkins/workspace/
-                   # ls -la
-                    #./export_movie.sh
+                    cd /var/lib/jenkins/workspace/
+                    ls -la
+                    ./export_movie.sh
                 '''
             }
         }
