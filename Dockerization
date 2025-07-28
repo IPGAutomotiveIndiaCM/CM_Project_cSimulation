@@ -80,7 +80,7 @@ pipeline {
         stage('Movie Export') {
             steps {
                 // Placeholder for the simulation running commands
-                //call that python3 script
+                //call that movie export script
                 sh '''
                     #cd /var/lib/jenkins/workspace/
                    # ls -la
