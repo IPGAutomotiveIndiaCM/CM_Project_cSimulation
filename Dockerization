@@ -85,6 +85,8 @@ pipeline {
                     cd /var/lib/jenkins/workspace/
                     ls -la
                     ./export_movie.sh
+                    cat $HOME/export_tcl_log.log
+                    cat $HOME/movie_log_.log
                 '''
             }
         }
