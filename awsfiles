@@ -57,7 +57,7 @@ def submitResult = sh(script: """
 
             // Save the job ID for the next stage
             currentBuild.description = "Job ID: ${jobId}"
-            echo "Submitted  AWS Batch job with Job ID: ${jobId}"
+            echo "Submitted 1 AWS Batch job with Job ID: ${jobId}"
                 }
             }
         }
